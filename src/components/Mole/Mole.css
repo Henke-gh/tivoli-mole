@@ -1,0 +1,31 @@
+.mole-container {
+    height: 5rem;
+    width: 5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mole-hole-upper, .mole-hole-lower {
+    height: 50%;
+    position: relative;
+    background: burlywood;
+}
+
+.mole-hole-lower {
+    z-index: 2;
+}
+
+.mole {
+    position: absolute;
+    width: 20%;
+    height: 50%;
+    background-color: grey;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
