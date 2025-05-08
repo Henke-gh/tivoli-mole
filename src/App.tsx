@@ -1,14 +1,18 @@
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import TestArea from "./components/TestArea/TestArea";
+import TransactionForm from "./components/TransactionForm/TransactionForm";
 
 function App() {
   return (
     <>
-    <Header/>
+      <Header />
       <h1>Whack-a-Mole!</h1>
-  
-    <Footer />  
+      <TestArea>
+        <TransactionForm />
+      </TestArea>
+      <Footer />
     </>
   );
 }

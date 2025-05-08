@@ -1,0 +1,462 @@
+openapi: 3.0.0
+info:
+  title: Tivoli centralbank API
+  description: API for managing users, groups, amusements, and transactions in Tivoli.
+  version: 1.0.0
+  server:
+    - url: http://localhost:3000/tivoli-bank/
+      description: Local server
+
+paths:
+  /users:
+    get:
+      summary: "Get a list of users"
+      responses:
+        "200":
+          description: "List of users"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uuid:
+                      type: string
+                    firstname:
+                      type: string
+                    lastname:
+                      type: string
+                    saldo:
+                      type: number
+                      format: float
+                    github:
+                      type: string
+                    url:
+                      type: string
+                    stamps:
+                      type: array
+                      items:
+                        type: string
+    post:
+      summary: "Create a new user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startcode:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                password:
+                  type: string
+                github:
+                  type: string
+                url:
+                  type: string
+      responses:
+        "201":
+          description: "User created"
+
+  /users/{id}:
+    get:
+      summary: "Get a specific user by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "User details"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                  firstname:
+                    type: string
+                  lastname:
+                    type: string
+                  saldo:
+                    type: number
+                    format: float
+                  github:
+                    type: string
+                  url:
+                    type: string
+                  stamps:
+                    type: array
+                    items:
+                      type: string
+        "404":
+          description: "User not found"
+    put:
+      summary: "Update a user by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                saldo:
+                  type: number
+                  format: float
+                github:
+                  type: string
+                url:
+                  type: string
+                stamps:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: "User updated"
+    delete:
+      summary: "Delete a user by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: "User deleted"
+
+  /groups:
+    get:
+      summary: "Get a list of groups"
+      responses:
+        "200":
+          description: "List of groups"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uuid:
+                      type: string
+                    members:
+                      type: array
+                      items:
+                        type: string
+    post:
+      summary: "Create a new group"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startcode:
+                  type: string
+                members:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "201":
+          description: "Group created"
+
+  /groups/{id}:
+    get:
+      summary: "Get a specific group by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Group details"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                  members:
+                    type: array
+                    items:
+                      type: string
+        "404":
+          description: "Group not found"
+    put:
+      summary: "Update a group by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                members:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: "Group updated"
+    delete:
+      summary: "Delete a group by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: "Group deleted"
+
+  /amusements:
+    get:
+      summary: "Get a list of amusements"
+      responses:
+        "200":
+          description: "List of amusements"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    group_id:
+                      type: string
+                    name:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - game
+                        - attraction
+                    stamp:
+                      type: string
+                      description: "metal + animal, ex. gold tucan"
+                    description:
+                      type: string
+                    url:
+                      type: string
+    post:
+      summary: "Create a new amusement"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                group_id:
+                  type: string
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - game
+                    - attraction
+                stamp:
+                  type: string
+                  description: "metal + animal, ex. gold tucan"
+                description:
+                  type: string
+                url:
+                  type: string
+      responses:
+        "201":
+          description: "Amusement created"
+
+  /amusements/{id}:
+    get:
+      summary: "Get a specific amusement by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Amusement details"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                  group_id:
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                      - game
+                      - attraction
+                  stamp:
+                    type: string
+                    description: "metal + animal, ex. gold tucan"
+                  description:
+                    type: string
+                  url:
+                    type: string
+        "404":
+          description: "Amusement not found"
+    put:
+      summary: "Update a specific amusement by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  type: string
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - game
+                    - attraction
+                stamp:
+                  type: string
+                  description: "metal + animal, ex. gold tucan"
+                description:
+                  type: string
+                url:
+                  type: string
+      responses:
+        "200":
+          description: "Amusement updated"
+    delete:
+      summary: "Delete a specific amusement by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: "Amusement deleted"
+
+  /transactions:
+    get:
+      summary: "Get a list of transactions"
+      responses:
+        "200":
+          description: "List of transactions"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    seller:
+                      type: string
+                    buyer:
+                      type: string
+                    amount:
+                      type: number
+                      format: float
+                    stamp:
+                      type: string
+                      description: "metal + animal, ex. gold tucan"
+
+    post:
+      summary: "Create a new transaction"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seller:
+                  type: string
+                buyer:
+                  type: string
+                amount:
+                  type: number
+                  format: float
+                stamp:
+                  type: string
+                  description: "metal + animal, ex. gold tucan"
+      responses:
+        "201":
+          description: "Transaction created"
+
+  /transactions/{id}:
+    get:
+      summary: "Get a specific transaction by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Transaction details"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  seller:
+                    type: string
+                  buyer:
+                    type: string
+                  amount:
+                    type: number
+                    format: float
+                  stamp:
+                    type: string
+                    description: "metal + animal, ex. gold tucan"
+        "404":
+          description: "Transaction not found"

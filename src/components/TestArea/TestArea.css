@@ -1,0 +1,9 @@
+.testArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: rgb(210, 234, 210);
+  border-radius: 0.5rem;
+}

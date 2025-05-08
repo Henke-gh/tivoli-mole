@@ -1,0 +1,8 @@
+.transactionForm {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: rgb(137, 195, 137);
+  border-radius: 1rem;
+  max-width: 40%;
+}

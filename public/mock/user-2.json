@@ -1,0 +1,12 @@
+[
+    {
+      "uuid": "user-2",
+      "firstname": "Berit",
+      "lastname": "Fågelfrans",
+      "saldo": 120,
+      "github": "bfGH",
+      "url": "https://github.com/bfGH",
+      "stamps": ["platinum snake", "dolphin"]
+    }
+  ]
+  

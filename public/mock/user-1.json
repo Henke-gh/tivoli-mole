@@ -1,0 +1,12 @@
+[
+    {
+      "uuid": "user-1",
+      "firstname": "Glenn",
+      "lastname": "Danzig",
+      "saldo": 666,
+      "github": "GlennGH",
+      "url": "https://github.com/glennGH",
+      "stamps": ["gold tucan"]
+    }
+  ]
+  

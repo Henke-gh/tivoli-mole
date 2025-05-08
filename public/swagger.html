@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tivoli Centralbank API</title>
+    <link rel="stylesheet" href="./swagger-ui.css" />
+  </head>
+  <body>
+    <div id="swagger-ui"></div>
+    <script src="./swagger-ui-bundle.js"></script>
+    <script>
+      window.onload = () => {
+        SwaggerUIBundle({
+          url: "./openapi.yaml", // or use a JSON version
+          dom_id: "#swagger-ui",
+        });
+      };
+    </script>
+  </body>
+</html>
