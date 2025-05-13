@@ -3,6 +3,8 @@ import "./Startgame.css";
 import { HighScoreService } from "../../services/highScoreService";
 import type { Score } from "../../lib/databaseFunction";
 
+
+
 interface StartgameProps {
     onStartGame: () => void;
     gameTitle?: string;
@@ -88,6 +90,7 @@ const Startgame: React.FC<StartgameProps> = ({
                                     ))}
                                 </tbody>
                             </table>
+                            
                         </div>
                     )}
                 </div>

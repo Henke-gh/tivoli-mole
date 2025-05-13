@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { HighScoreService } from "../../services/highScoreService";
 import type { Score } from "../../lib/databaseFunction";
+import './HighScoreTable.css'; 
 
 export const HighScoreTable: React.FC = () => {
   const [highScores, setHighScores] = useState<Score[]>([]);
@@ -19,30 +20,30 @@ export const HighScoreTable: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="text-center p-4">Cargando puntuaciones...</div>;
+    return <div className="loading">Loading scores...</div>;
   }
 
   return (
     <div className="high-score-table">
-      <h2 className="text-xl font-bold mb-4">Mejores Puntuaciones</h2>
+      <h2 className="title">Top Scores</h2>
       
       {highScores.length === 0 ? (
-        <p className="text-center">¡Aún no hay puntuaciones registradas!</p>
+        <p className="no-scores">No scores yet!</p>
       ) : (
-        <table className="w-full">
+        <table className="score-table">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="p-2 text-left">Puesto</th>
-              <th className="p-2 text-left">Nombre</th>
-              <th className="p-2 text-right">Puntuación</th>
+            <tr>
+              <th className="header">Rank</th>
+              <th className="header">Name</th>
+              <th className="header">Score</th>
             </tr>
           </thead>
           <tbody>
             {highScores.map((score, index) => (
-              <tr key={score.id} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                <td className="p-2">{index + 1}</td>
-                <td className="p-2 font-bold">{score.name}</td>
-                <td className="p-2 text-right">{score.score}</td>
+              <tr key={score.id} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
+                <td className="cell">{index + 1}</td>
+                <td className="cell">{score.name}</td>
+                <td className="cell">{score.score}</td>
               </tr>
             ))}
           </tbody>

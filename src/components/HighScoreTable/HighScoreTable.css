@@ -1,0 +1,57 @@
+/* HighScoreTable.css */
+
+/* Estilos generales de la tabla */
+.high-score-table {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .no-scores {
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+  }
+  
+  /* Estilos de la tabla */
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .score-table th,
+  .score-table td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .header {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  .even-row {
+    background-color: #f9f9f9;
+  }
+  
+  .odd-row {
+    background-color: #ffffff;
+  }
+  
+  .cell {
+    padding: 10px;
+    text-align: left;
+  }
+  

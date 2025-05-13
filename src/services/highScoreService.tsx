@@ -2,7 +2,7 @@ import { selectData, insertData } from '../lib/databaseFunction';
 import type { Score } from '../lib/databaseFunction';
 
 export class HighScoreService {
-  private static TABLE_NAME = 'scores'; // Asumiendo que la tabla se llama 'scores'
+  private static TABLE_NAME = 'Score'; // Asumiendo que la tabla se llama 'scores'
   private static TOP_LIMIT = 10; // Número de puntuaciones altas a mostrar
 
   // Obtener las mejores puntuaciones

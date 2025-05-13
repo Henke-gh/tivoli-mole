@@ -1,14 +1,11 @@
 import "./Gameover.css";
 
-// Define prop types for the Gameover component
-
 interface GameoverProps {
   score?: number;  // Optional prop for final score
-  onRestart?: () => void;  // Optional prop for custom restart function
+  onRestart?: () => void; 
 }
 
 function Gameover({ score, onRestart }: GameoverProps) {
-  // Default handler uses window.location.reload if no custom handler provided
   const handleRestart = () => {
     if (onRestart) {
       onRestart();
