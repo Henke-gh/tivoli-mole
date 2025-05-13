@@ -14,6 +14,8 @@ const WhackAMoleGame: React.FC = () => {
     }))
   );
   const [score, setScore] = useState<number>(0);
+  const [timeLeft, setTimeLeft] = useState<number>(5); // 5 seconds
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
   // Activate a random mole
   useEffect(() => {
@@ -28,38 +30,60 @@ const WhackAMoleGame: React.FC = () => {
     }, 1000); // Every 1 seconds?
 
     return () => clearInterval(interval);
-  }, []);
+  }, [gameOver]);
+
+  //timer logic
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000); // Decrease time every second
+
+      return () => clearInterval(timer);
+    } else {
+      setGameOver(true);
+    }
+  }, [timeLeft]);
 
   const handleWhack = (id: number) => {
-    setMoles((prev) =>
-      prev.map((mole) =>
-        mole.id === id ? { ...mole, active: false, whacked: true } : mole
-      )
-    );
-    setScore((prev) => prev + 1);
-
-    setTimeout(() => {
+    if (!gameOver) {
       setMoles((prev) =>
         prev.map((mole) =>
-          mole.id === id ? { ...mole, whacked: false } : mole
+          mole.id === id ? { ...mole, active: false, whacked: true } : mole
         )
       );
-    }, 300);
-  };
+      setScore((prev) => prev + 1);
 
+      setTimeout(() => {
+        setMoles((prev) =>
+          prev.map((mole) =>
+            mole.id === id ? { ...mole, whacked: false } : mole
+          )
+        );
+      }, 300);
+    }
+  };
   return (
     <div className="moleboard-container">
       <h2>Score: {score}</h2>
-      <div className="moleboard">
-        {moles.map((mole) => (
-          <Mole
-            key={mole.id}
-            isActive={mole.active}
-            onWhack={() => handleWhack(mole.id)}
-            whacked={mole.whacked}
-          />
-        ))}
-      </div>
+      <h3>Time Left: {timeLeft} seconds</h3>
+      {gameOver ? (
+        <div className="game-over">
+          <h1>Game Over!</h1>
+          <p>Your final score is: {score}</p>
+        </div>
+      ) : (
+        <div className="moleboard">
+          {moles.map((mole) => (
+            <Mole
+              key={mole.id}
+              isActive={mole.active}
+              onWhack={() => handleWhack(mole.id)}
+              whacked={mole.whacked}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
