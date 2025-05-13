@@ -7,7 +7,7 @@ const NUM_MOLES = 12;
 
 const WhackAMoleGame: React.FC = () => {
   const [moles, setMoles] = useState<MoleState[]>(
-    Array.from({ length: NUM_MOLES }, (_, i) => ({ id: i, active: false }))
+    Array.from({ length: NUM_MOLES }, (_, i) => ({ id: i, active: false, whacked: false }))
   );
   const [score, setScore] = useState<number>(0);
 
@@ -29,10 +29,20 @@ const WhackAMoleGame: React.FC = () => {
   const handleWhack = (id: number) => {
     setMoles((prev) =>
       prev.map((mole) =>
-        mole.id === id ? { ...mole, active: false } : mole
+        mole.id === id ? { ...mole, active: false, whacked: true } : mole
       )
     );
     setScore((prev) => prev + 1);
+
+    setTimeout(()=> {
+      setMoles((prev)=>
+      prev.map((mole)=>
+      mole.id===id
+    ? {...mole, whacked: false}
+  : mole
+)
+);
+    }, 300)
   };
 
   return (
@@ -44,6 +54,7 @@ const WhackAMoleGame: React.FC = () => {
             key={mole.id}
             isActive={mole.active}
             onWhack={() => handleWhack(mole.id)}
+            whacked= {mole.whacked}
           />
         ))}
       </div>
