@@ -9,7 +9,7 @@ let gameEnd: boolean = false; // Flag to indicate if the game has ended
 
 const WhackAMoleGame: React.FC = () => {
   const [moles, setMoles] = useState<MoleState[]>(
-    Array.from({ length: NUM_MOLES }, (_, i) => ({ id: i, active: false }))
+    Array.from({ length: NUM_MOLES }, (_, i) => ({ id: i, active: false, whacked: false }))
   );
   const [score, setScore] = useState<number>(0);
   const [timeLeft, setTimeLeft] = useState<number>(60); // 60 seconds
@@ -34,6 +34,16 @@ const WhackAMoleGame: React.FC = () => {
       prev.map((mole) => (mole.id === id ? { ...mole, active: false } : mole))
     );
     setScore((prev) => prev + 1);
+
+    setTimeout(()=> {
+      setMoles((prev)=>
+      prev.map((mole)=>
+      mole.id===id
+    ? {...mole, whacked: false}
+  : mole
+)
+);
+    }, 300)
   };
 
   const startWhacking = () => {
