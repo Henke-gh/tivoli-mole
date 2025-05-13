@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Mole from "../Mole/Mole";
 import "./MoleBoard.css";
-import type { MoleState } from "../../types/types";
+import type { MoleState, WhackAMoleGameProps } from "../../types/types";
 
 const NUM_MOLES = 12;
 
-const WhackAMoleGame: React.FC = () => {
+const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
+  onGameover,
+  updateScore,
+}) => {
   const [moles, setMoles] = useState<MoleState[]>(
     Array.from({ length: NUM_MOLES }, (_, i) => ({
       id: i,
@@ -13,9 +16,9 @@ const WhackAMoleGame: React.FC = () => {
       whacked: false,
     }))
   );
-  const [score, setScore] = useState<number>(0);
+  const [playerScore, setPlayerScore] = useState<number>(0);
   const [timeLeft, setTimeLeft] = useState<number>(5); // 5 seconds
-  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [gameEnd, setGameEnd] = useState<boolean>(false);
 
   // Activate a random mole
   useEffect(() => {
@@ -30,7 +33,7 @@ const WhackAMoleGame: React.FC = () => {
     }, 1000); // Every 1 seconds?
 
     return () => clearInterval(interval);
-  }, [gameOver]);
+  }, [gameEnd]);
 
   //timer logic
   useEffect(() => {
@@ -41,18 +44,23 @@ const WhackAMoleGame: React.FC = () => {
 
       return () => clearInterval(timer);
     } else {
-      setGameOver(true);
+      setGameEnd(true);
+      if (onGameover) {
+        updateScore?.(playerScore);
+        onGameover();
+      }
     }
-  }, [timeLeft]);
+  }, [timeLeft, onGameover]);
 
   const handleWhack = (id: number) => {
-    if (!gameOver) {
+    if (!gameEnd) {
       setMoles((prev) =>
         prev.map((mole) =>
           mole.id === id ? { ...mole, active: false, whacked: true } : mole
         )
       );
-      setScore((prev) => prev + 1);
+      setPlayerScore((prev) => prev + 1);
+      updateScore?.(playerScore);
 
       setTimeout(() => {
         setMoles((prev) =>
@@ -63,16 +71,12 @@ const WhackAMoleGame: React.FC = () => {
       }, 300);
     }
   };
+
   return (
     <div className="moleboard-container">
-      <h2>Score: {score}</h2>
+      <h2>Score: {playerScore}</h2>
       <h3>Time Left: {timeLeft} seconds</h3>
-      {gameOver ? (
-        <div className="game-over">
-          <h1>Game Over!</h1>
-          <p>Your final score is: {score}</p>
-        </div>
-      ) : (
+      {!gameEnd && (
         <div className="moleboard">
           {moles.map((mole) => (
             <Mole
