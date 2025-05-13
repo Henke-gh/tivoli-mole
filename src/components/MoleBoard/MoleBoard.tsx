@@ -39,7 +39,7 @@ const WhackAMoleGame: React.FC = () => {
   const startWhacking = () => {
     isWhack = true;
     //function to start a 60 second timer
-    const timerDuration = 5; // 60 seconds
+    const timerDuration = 5; // 60 seconds, 5 while testing
     setTimeLeft(timerDuration); // Initialize time left
 
     const interval = setInterval(() => {
