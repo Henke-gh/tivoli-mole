@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import MoleBoard from "./components/MoleBoard/MoleBoard";
 import Startgame from "./components/Startgame/Startgame";
 import Gameover from "./components/Gameover/Gameover";
 
@@ -36,7 +37,9 @@ function App() {
         <>
           <Header />
           <h1>Whack-a-Mole!</h1>
-        
+
+           <MoleBoard/>
+
           <Footer />
         </>
       )}
