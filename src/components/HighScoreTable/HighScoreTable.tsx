@@ -33,9 +33,9 @@ export const HighScoreTable: React.FC = () => {
         <table className="score-table">
           <thead>
             <tr>
-              <th className="header">Rank</th>
-              <th className="header">Name</th>
-              <th className="header">Score</th>
+              <th className="column-header">Rank</th>
+              <th className="column-header">Name</th>
+              <th className="column-header">Score</th>
             </tr>
           </thead>
           <tbody>
