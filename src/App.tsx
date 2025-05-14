@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -32,8 +32,21 @@ function App() {
     setScore(newScore);
   };
 
-  const testResponse = getBankTest();
-  console.log("Test response:", testResponse);
+  //this is a test to fetch data from the API
+  // and log it to the console
+  //remove before we go live
+  useEffect(() => {
+    const fetchTestResponse = async () => {
+      try {
+        const testResponse = await getBankTest();
+        console.log("Test response:", testResponse);
+      } catch (error) {
+        console.error("Error fetching test response:", error);
+      }
+    };
+
+    fetchTestResponse();
+  }, []);
 
   return (
     <div className="app">
