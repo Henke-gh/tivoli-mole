@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Startgame.css"; 
-import { HighScoreService } from "../../services/highScoreService";
-import type { Score } from "../../lib/databaseFunction";
-
+//import { HighScoreService } from "../../services/highScoreService";
+//import type { Score } from "../../lib/databaseFunction";
+import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
 
 
 interface StartgameProps {
@@ -16,10 +16,9 @@ const Startgame: React.FC<StartgameProps> = ({
 }) => {
 
     console.log("✅ Startgame.tsx se está montando");
-
     const [isVisible, setIsVisible] = useState(false);
-    const [highScores, setHighScores] = useState<Score[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+   //const [highScores, setHighScores] = useState<Score[]>([]);
+    //const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         // Efecto para animación de entrada
@@ -30,7 +29,7 @@ const Startgame: React.FC<StartgameProps> = ({
         return () => clearTimeout(timer);
     }, []);
     
-    useEffect(() => {
+      {/*  useEffect(() => {
         // Cargar puntuaciones altas
         const loadHighScores = async () => {
             setIsLoading(true);
@@ -40,7 +39,7 @@ const Startgame: React.FC<StartgameProps> = ({
         };
         
         loadHighScores();
-    }, []);
+    }, []);*/}
     
     const handleStartGame = () => {
         setIsVisible(false);
@@ -52,17 +51,33 @@ const Startgame: React.FC<StartgameProps> = ({
             <div className="startgame-content">
                 <h1 className="game-title">{gameTitle}</h1>
                 
-                <div className="game-mascot">
+                 {/* <div className="game-mascot">
                     <div className="mole-graphic">🦔🦔🦔</div>
-                </div>
-                
+                </div>*/}
+                  <div className="game-mascot">
+    <div className="mole-graphic">
+        <img src="./Mole.svg" alt="Mole" />
+        <img src="./Mole.svg" alt="Mole" />
+        <img src="./Mole.svg" alt="Mole" />
+    </div>
+</div>
+
                 <div className="welcome-text">
                     <h2>Welcome to the Game!</h2>
                     <p>Are you ready to start? <br /> 
                     Click the button below to begin your adventure!</p>
                 </div>
+                <button 
+                    className="start-button" 
+                    onClick={handleStartGame}
+                >
+                    Start Game
+                </button>
                 
-                {/* Tabla de puntuaciones altas */}
+                <div className="high-scores-container">
+                    <HighScoreTable />
+                </div>
+                {/* Tabla de puntuaciones altas 
                 <div className="high-scores-container">
                     <h3 className="high-scores-title">Top Scores</h3>
                     
@@ -93,15 +108,8 @@ const Startgame: React.FC<StartgameProps> = ({
                             
                         </div>
                     )}
-                </div>
+                </div>*/}
               
-                <button 
-                    className="start-button" 
-                    onClick={handleStartGame}
-                >
-                    Start Game
-                </button>
-
                 <details className="controls-info">
                     <summary>how to play?</summary>
                     <p>Smash on the moles to score points!</p>

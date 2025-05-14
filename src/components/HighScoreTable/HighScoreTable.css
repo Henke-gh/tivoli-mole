@@ -1,57 +1,177 @@
-/* HighScoreTable.css */
 
-/* Estilos generales de la tabla */
 .high-score-table {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/*.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}*/
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #4d4d4d; 
+  text-shadow: 
+    2px 2px 0px #568925,
+    0 0 8px rgba(175, 215, 138, 0.4), 
+    0 0 10px #c05500;
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px;
+  border: 3px solid #ff4d00; 
+  background-color: #afd78a; 
+  box-shadow: inset 0 0 5px rgba(86, 137, 37, 0.5);
+  position: relative;
+  animation: subtleBlink 3s ease-in-out infinite alternate;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 1px dashed #ff4d00; /* Borde punteado naranja brillante */
+  pointer-events: none;
+}
+
+@keyframes subtleBlink {
+  0% {
+    text-shadow: 
+      2px 2px 0px #568925, 
+      0 0 5px rgba(175, 215, 138, 0.3), 
+      0 0 10px #c05500; 
   }
-  
-  .title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
+  100% {
+    text-shadow: 
+      2px 2px 0px #568925, 
+      0 0 8px rgba(175, 215, 138, 0.6), 
+      0 0 15px #c05500; 
   }
-  
-  .no-scores {
-    text-align: center;
-    font-size: 1rem;
-  }
-  
-  .loading {
-    text-align: center;
-    padding: 20px;
-    font-size: 1rem;
-  }
-  
-  /* Estilos de la tabla */
-  .score-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+}
+
+
+
+
+.no-scores {
+  text-align: center;
+  font-size: 1rem;
+  padding: 20px;
+  color: #666;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Table Styles */
+.score-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  table-layout: fixed;
+  display: table; /* Ensure table displays as a table */
+}
+
+.score-table thead {
+  display: table-header-group;
+}
+
+.score-table tbody {
+  display: table-row-group;
+}
+
+.score-table tr {
+  display: table-row;
+}
+
+.score-table th,
+.score-table td {
+  display: table-cell;
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.column-header {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Column widths */
+.score-table th:nth-child(1),
+.score-table td:nth-child(1) {
+  width: 20%;
+  text-align: center;
+}
+
+.score-table th:nth-child(2),
+.score-table td:nth-child(2) {
+  width: 50%;
+  text-align: left;
+}
+
+.score-table th:nth-child(3),
+.score-table td:nth-child(3) {
+  width: 30%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.even-row {
+  background-color: #f9f9f9;
+}
+
+.odd-row {
+  background-color: #ffffff;
+}
+
+.cell {
+  padding: 12px 15px;
+}
+
+
+.score-table tbody tr:hover {
+  background-color: #f0f8ff;
+  transition: background-color 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .high-score-table {
+    padding: 10px;
   }
   
   .score-table th,
   .score-table td {
-    padding: 10px;
-    text-align: left;
+    padding: 8px;
+    font-size: 0.9rem;
   }
   
-  .header {
-    background-color: #f0f0f0;
-    font-weight: bold;
+  .title {
+    font-size: 1.2rem;
   }
-  
-  .even-row {
-    background-color: #f9f9f9;
-  }
-  
-  .odd-row {
-    background-color: #ffffff;
-  }
-  
-  .cell {
-    padding: 10px;
-    text-align: left;
-  }
-  
+}
