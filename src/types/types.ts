@@ -13,3 +13,9 @@ export interface WhackAMoleGameProps {
   onGameover?: () => void;
   updateScore?: (score: number) => void;
 }
+
+export interface bankTest {
+  message: string;
+  timestamp: string;
+  headers: string;
+}

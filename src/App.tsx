@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import MoleBoard from "./components/MoleBoard/MoleBoard";
 import Startgame from "./components/Startgame/Startgame";
 import Gameover from "./components/Gameover/Gameover";
+import { getBankTest } from "./api/centralbanken";
 
 function App() {
   const [gameStarted, setGameStarted] = useState<boolean>(false);
@@ -30,6 +31,9 @@ function App() {
   const handleScoreUpdate = (newScore: number): void => {
     setScore(newScore);
   };
+
+  const testResponse = getBankTest();
+  console.log("Test response:", testResponse);
 
   return (
     <div className="app">
