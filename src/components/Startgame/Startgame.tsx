@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Startgame.css"; 
-//import { HighScoreService } from "../../services/highScoreService";
-//import type { Score } from "../../lib/databaseFunction";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
 import AttractionStampSelector from "../StampGame/StampAttraction";
-
 
 interface StartgameProps {
     onStartGame: () => void;
@@ -18,33 +15,19 @@ const Startgame: React.FC<StartgameProps> = ({
 
     console.log("✅ Startgame.tsx se está montando");
     const [isVisible, setIsVisible] = useState(false);
-   //const [highScores, setHighScores] = useState<Score[]>([]);
-    //const [isLoading, setIsLoading] = useState(true);
 
     const handleAttractionStampSelect = (option: 'basic' | 'premium') => {
         console.log("Stamp option selected:", option);
     };
     
     useEffect(() => {
-        // Efecto para animación de entrada
+        // Animation effect for the start game screen
         const timer = setTimeout(() => {
             setIsVisible(true);
         }, 100);
         
         return () => clearTimeout(timer);
     }, []);
-    
-      {/*  useEffect(() => {
-        // Cargar puntuaciones altas
-        const loadHighScores = async () => {
-            setIsLoading(true);
-            const scores = await HighScoreService.getTopScores();
-            setHighScores(scores);
-            setIsLoading(false);
-        };
-        
-        loadHighScores();
-    }, []);*/}
     
     const handleStartGame = () => {
         setIsVisible(false);
@@ -56,9 +39,6 @@ const Startgame: React.FC<StartgameProps> = ({
             <div className="startgame-content">
                 <h1 className="game-title">{gameTitle}</h1>
                 
-                 {/* <div className="game-mascot">
-                    <div className="mole-graphic">🦔🦔🦔</div>
-                </div>*/}
                   <div className="game-mascot">
     <div className="mole-graphic">
         <img src="./Mole.svg" alt="Mole" />
@@ -79,52 +59,16 @@ const Startgame: React.FC<StartgameProps> = ({
                     Start Game
                 </button>
 
-                      {/* Nuevo componente de selector de atracción */}
-
+                      {/*New component for Stamp and Metal*/}
                       <AttractionStampSelector 
                       baseCost={2}
                       metalCost={4}
                     onSelect={handleAttractionStampSelect}/>
-
-                      
-                   
                 
                 <div className="high-scores-container">
                     <HighScoreTable />
                 </div>
-                {/* Tabla de puntuaciones altas 
-                <div className="high-scores-container">
-                    <h3 className="high-scores-title">Top Scores</h3>
-                    
-                    {isLoading ? (
-                        <p className="loading-text">Loading scores...</p>
-                    ) : highScores.length === 0 ? (
-                        <p className="no-scores-text">No high scores yet. Be the first!</p>
-                    ) : (
-                        <div className="high-scores-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th className="rank-column">#</th>
-                                        <th className="name-column">Player</th>
-                                        <th className="score-column">Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {highScores.slice(0, 5).map((score, index) => (
-                                        <tr key={score.id}>
-                                            <td className="rank-column">{index + 1}</td>
-                                            <td className="name-column">{score.name}</td>
-                                            <td className="score-column">{score.score}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            
-                        </div>
-                    )}
-                </div>*/}
-              
+                
                 <details className="controls-info">
                     <summary>how to play?</summary>
                     <p>Smash on the moles to score points!</p>

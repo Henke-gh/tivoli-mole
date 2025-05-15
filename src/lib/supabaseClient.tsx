@@ -1,16 +1,15 @@
-// src/lib/supabaseClient.ts
 
 import { createClient } from '@supabase/supabase-js';
 
-// En una aplicación React con Vite, las variables de entorno deben tener el prefijo VITE_
+// It is a React app with Vite,
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_KEY;
 
-// Verifica que las variables de entorno estén definidas
+// Verify that the environment variables are defined
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error('Supabase URL o Key no definidas. Verifica tus variables de entorno.');
 }
 
-// Crea y exporta el cliente de Supabase
+// Create and export the Supabase client
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export default supabase;

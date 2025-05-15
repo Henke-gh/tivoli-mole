@@ -1,11 +1,11 @@
-// src/lib/databaseFunction.ts
-import supabase from './supabaseClient'; // Asegúrate de que el path sea correcto
 
-// 1. Seleccionar datos
+import supabase from './supabaseClient'; 
+
+// 1.To select data from a table
 export const selectData = async (tableName: string) => {
   const { data, error } = await supabase
     .from(tableName)
-    .select('*'); // Selecciona todos los campos
+    .select('*'); // To choose all the fields
 
   if (error) {
     console.error('Error selecting data:', error);
@@ -16,11 +16,11 @@ export const selectData = async (tableName: string) => {
   return data;
 };
 
-// 2. Insertar datos
+// 2. To insert data into a table
 export const insertData = async (tableName: string, values: object[]) => {
   const { data, error } = await supabase
     .from(tableName)
-    .insert(values); // Inserta los valores en la tabla
+    .insert(values); 
 
   if (error) {
     console.error('Error inserting data:', error);
@@ -30,7 +30,7 @@ export const insertData = async (tableName: string, values: object[]) => {
   return data;
 };
 
-// 3. Actualizar datos
+// 3. Uppdate data
 export const updateData = async (
   tableName: string,
   updatedValues: object,
@@ -39,7 +39,7 @@ export const updateData = async (
   const { data, error } = await supabase
     .from(tableName)
     .update(updatedValues)
-    .match(condition); // Actualiza con las condiciones dadas
+    .match(condition); //Uppdate with the given conditions
 
   if (error) {
     console.error('Error updating data:', error);
@@ -49,13 +49,12 @@ export const updateData = async (
   return data;
 };
 
-// 4. Eliminar datos
+// 4.Eliminate data
 export const deleteData = async (tableName: string, condition: object) => {
   const { data, error } = await supabase
     .from(tableName)
     .delete()
-    .match(condition); // Elimina según la condición
-
+    .match(condition); // eliminate with the given conditions
   if (error) {
     console.error('Error deleting data:', error);
     return null;
