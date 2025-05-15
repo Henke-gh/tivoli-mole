@@ -1,0 +1,54 @@
+
+.stamp-selector-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.stamp-selector-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.stamp-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stamp-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.stamp-input {
+  margin-top: 4px;
+}
+
+.stamp-label {
+  cursor: pointer;
+}
+
+.option-title {
+  font-weight: bold;
+  display: block;
+  color: #333333;
+}
+
+.option-price {
+  color: #555555;
+}
+
+.stamp-note {
+  font-size: 14px;
+  color: #777777;
+  font-style: italic;
+  margin-top: 16px;
+}

@@ -3,6 +3,7 @@ import "./Startgame.css";
 //import { HighScoreService } from "../../services/highScoreService";
 //import type { Score } from "../../lib/databaseFunction";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
+import AttractionStampSelector from "../StampGame/StampAttraction";
 
 
 interface StartgameProps {
@@ -19,6 +20,10 @@ const Startgame: React.FC<StartgameProps> = ({
     const [isVisible, setIsVisible] = useState(false);
    //const [highScores, setHighScores] = useState<Score[]>([]);
     //const [isLoading, setIsLoading] = useState(true);
+
+    const handleAttractionStampSelect = (option: 'basic' | 'premium') => {
+        console.log("Stamp option selected:", option);
+    };
     
     useEffect(() => {
         // Efecto para animación de entrada
@@ -73,6 +78,16 @@ const Startgame: React.FC<StartgameProps> = ({
                 >
                     Start Game
                 </button>
+
+                      {/* Nuevo componente de selector de atracción */}
+
+                      <AttractionStampSelector 
+                      baseCost={2}
+                      metalCost={4}
+                    onSelect={handleAttractionStampSelect}/>
+
+                      
+                   
                 
                 <div className="high-scores-container">
                     <HighScoreTable />
