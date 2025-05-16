@@ -24,8 +24,8 @@ export const HighScoreTable: React.FC = () => {
   }
 
   return (
-    <div className="high-score-table">
-      <h2 className="title">Top Scores</h2>
+    <>
+      <h2 className="title">High score</h2>
       
       {highScores.length === 0 ? (
         <p className="no-scores">No scores yet!</p>
@@ -49,6 +49,6 @@ export const HighScoreTable: React.FC = () => {
           </tbody>
         </table>
       )}
-    </div>
+    </>
   );
 };
