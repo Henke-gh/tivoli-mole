@@ -21,9 +21,6 @@ const AttractionStampSelector: React.FC<Props> = ({
   };
 
   return (
-    <div className="stamp-selector-container">
-      <h3 className="stamp-selector-title">Select your stamp option:</h3>
-      
       <div className="stamp-options-container">
         <div className="stamp-option">
           <input
@@ -35,8 +32,7 @@ const AttractionStampSelector: React.FC<Props> = ({
             onChange={() => handleOptionChange('basic')}
           />
           <label htmlFor="basic-option" className="stamp-label">
-            <span className="option-title">Basic stamp:</span>
-            <span className="option-price">Animal only - €{baseCost}</span>
+            <span className="option-price">With Tucan: €{baseCost}</span>
           </label>
         </div>
         
@@ -50,16 +46,10 @@ const AttractionStampSelector: React.FC<Props> = ({
             onChange={() => handleOptionChange('premium')}
           />
           <label htmlFor="premium-option" className="stamp-label">
-            <span className="option-title">Premium stamp:</span>
-            <span className="option-price">Animal + Metal - €{metalCost}</span>
+            <span className="option-price">With Gold Tucan: €{metalCost}</span>
           </label>
         </div>
       </div>
-      
-      <p className="stamp-note">
-        (The specific animal and metal will be assigned to your attraction)
-      </p>
-    </div>
   );
 };
 

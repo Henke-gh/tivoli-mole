@@ -1,4 +1,5 @@
 import "./Gameover.css";
+import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
 
 interface GameoverProps {
   score?: number; // Optional prop for final score
@@ -15,21 +16,25 @@ function Gameover({ score, onRestart }: GameoverProps) {
   };
 
   return (
-    <div className="gameover">
+    <section className="gameover">
       <div className="gameover-content">
-        <h1 className="game-over-title">Game Over!</h1>
+        <h1 className="game-over-title">Time is up!</h1>
 
         {/* Show score if provided */}
         {score !== undefined && (
-          <p className="game-over-text">Your final score: {score}</p>
+          <p className="game-over-text">You guaced {score} moles.</p>
         )}
+
+        <article className="high-scores-container">
+                            <HighScoreTable />
+                        </article>   
 
         <p className="game-over-text">Thank you for playing!</p>
         <button className="restart-button" onClick={handleRestart}>
-          Restart Game
+          Back to start
         </button>
       </div>
-    </div>
+    </section>
   );
 }
 

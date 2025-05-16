@@ -32,22 +32,24 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <>
       <Header />
-      {!gameStarted ? (
-        <Startgame onStartGame={handleStartGame} />
-      ) : gameOver ? (
-        <Gameover onRestart={handleRestartGame} score={score} />
-      ) : (
-        <>
-          <MoleBoard
-            onGameover={handleGameOver}
-            updateScore={handleScoreUpdate}
-          />
-        </>
-      )}
+        <main>
+        {!gameStarted ? (
+          <Startgame onStartGame={handleStartGame} />
+        ) : gameOver ? (
+          <Gameover onRestart={handleRestartGame} score={score} />
+        ) : (
+          <>
+            <MoleBoard
+              onGameover={handleGameOver}
+              updateScore={handleScoreUpdate}
+            />
+          </>
+        )}
+        </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
