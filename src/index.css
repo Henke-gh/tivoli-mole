@@ -1,10 +1,14 @@
 #root {
-  --light-green: #afd78a;
-  --dark-green: #568925;
-  --brown: #797267;
-  --light-brown: #c0b09a;
-  --red: #dc685b;
-  --headerFont: font-family: "Flavors", cursive;
+  --light-green: #ABF465;
+  --medium-green:#8DCB52;
+  --dark-green: #468B05;
+  --light-yellow: #FCFFD9;
+  --dark-yellow: #EDEBA6;
+  --brown: #57452C;
+  --light-brown: #BBA587;
+  --red: #E73F3F;
+  --white: #FFFFFF;
+  --headerFont: "Flavors", cursive;
 }
 /* 1. Use a more-intuitive box-sizing model */
 *,
