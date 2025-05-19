@@ -17,7 +17,7 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }))
   );
   const [playerScore, setPlayerScore] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(5); // 5 seconds
+  const [timeLeft, setTimeLeft] = useState<number>(10); // 5 seconds
   const [gameEnd, setGameEnd] = useState<boolean>(false);
 
   // Activate a random mole

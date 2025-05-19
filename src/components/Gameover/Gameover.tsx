@@ -1,4 +1,8 @@
 import "./Gameover.css";
+import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
+import { HighScoreService } from "@/services/highScoreService";
+import { qualifiesForHighScore } from "@/utils/helpers";
+import { useEffect, useState } from "react";
 
 interface GameoverProps {
   score?: number; // Optional prop for final score
@@ -6,6 +10,54 @@ interface GameoverProps {
 }
 
 function Gameover({ score, onRestart }: GameoverProps) {
+  const [highScore, setHighScore] = useState<number[]>([]);
+  const [playerName, setPlayerName] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submissionMsg, setSubmissionMsg] = useState<string | null>(null);
+  const [highScoreTrigger, setHighScoreTrigger] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchHighScores = async () => {
+      try {
+        const highscores = await HighScoreService.getTopScores();
+        setHighScore(highscores.map((highscore) => highscore.score));
+      } catch (error) {
+        console.error("Error fetching high scores:", error);
+      }
+    };
+
+    fetchHighScores();
+  }, []);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!score || playerName.trim() === "") {
+      setSubmissionMsg("Please enter your initials.");
+      return;
+    }
+    setIsSubmitting(true);
+    setSubmissionMsg(null);
+
+    try {
+      const savedScore = await HighScoreService.saveScore(playerName, score);
+
+      if (savedScore) {
+        setSubmissionMsg("Score submitted successfully!");
+
+        //update high score table, re-render
+        setHighScoreTrigger((prev) => prev + 1);
+      } else {
+        setSubmissionMsg("Failed to submit score.");
+      }
+    } catch (error) {
+      console.error("Error submitting score:", error);
+      setSubmissionMsg("Failed to submit score. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   const handleRestart = () => {
     if (onRestart) {
       onRestart();
@@ -15,20 +67,52 @@ function Gameover({ score, onRestart }: GameoverProps) {
   };
 
   return (
-    <div className="gameover">
-      <div className="gameover-content">
-        <h1 className="game-over-title">Game Over!</h1>
-
-        {/* Show score if provided */}
-        {score !== undefined && (
-          <p className="game-over-text">Your final score: {score}</p>
+    <div className="gameover-content">
+      <h1 className="game-over-title">Time is up!</h1>
+      <section className="player-results">
+        {/* Show only score if not highscore */}
+        {score !== undefined && !qualifiesForHighScore(score, highScore) && (
+          <p className="game-over-text">You guaced {score} moles.</p>
         )}
 
+        {/* If new high score, also promts player to submit new high score */}
+        {score !== undefined && qualifiesForHighScore(score, highScore) && (
+          <div className="highScore-message">
+            <p className="game-over-text">- New High Score -</p>
+            <p className="game-over-text">You guaced {score} moles.</p>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="name">Enter your initials:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="ATV"
+                maxLength={3}
+                value={playerName}
+                onChange={(e) => setPlayerName(e.target.value.toUpperCase())}
+                disabled={isSubmitting}
+              />
+              <button type="submit" disabled={isSubmitting}>
+                Submit
+              </button>
+            </form>
+            {submissionMsg && (
+              <p className="submission-message">{submissionMsg}</p>
+            )}
+          </div>
+        )}
+      </section>
+
+      <article className="high-scores-container">
+        <HighScoreTable key={highScoreTrigger} />
+      </article>
+
+      <section className="back-to-start">
         <p className="game-over-text">Thank you for playing!</p>
         <button className="restart-button" onClick={handleRestart}>
-          Restart Game
+          Back to Start
         </button>
-      </div>
+      </section>
     </div>
   );
 }
