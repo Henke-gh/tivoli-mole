@@ -3,7 +3,6 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import Startgame from "@/components/Startgame/Startgame";
 import MoleBoard from "@/components/MoleBoard/MoleBoard";
-import Gameover from "@/components/Gameover/Gameover";
 
 export default function Home() {
   const [gameStarted, setGameStarted] = useState<boolean>(false);
