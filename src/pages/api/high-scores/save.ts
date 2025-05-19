@@ -9,7 +9,6 @@ export default async function handler(
     return res.status(405).json({ message: "Method not allowed" });
   }
   const { name, score } = req.body;
-
   if (!name || typeof score !== "number") {
     return res.status(400).json({ message: "Invalid data" });
   }
@@ -17,10 +16,14 @@ export default async function handler(
   try {
     const { data, error } = await supabase
       .from("Score")
-      .insert([{ name, score }]);
-
-    if (error) {
-      throw error;
+      .insert([{ name, score }])
+      .select();
+    if (error !== null) {
+      console.error("Error inserting data:", error);
+      return res.status(500).json({ message: "Error saving score" });
+    }
+    if (!error) {
+      res.status(200).json({ message: "Score saved successfully", data });
     }
 
     res.status(200).json({ message: "Score saved successfully", data });
