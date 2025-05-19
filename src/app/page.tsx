@@ -31,6 +31,7 @@ export default function Home() {
   };
   return (
     <div className={styles.page}>
+      <h3>remove this</h3>
       {!gameStarted ? (
         <Startgame onStartGame={handleStartGame} />
       ) : gameOver ? (
