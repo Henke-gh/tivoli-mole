@@ -1,18 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Flavors, Roboto_Slab } from "next/font/google";
+import { Flavors, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const flavor = Flavors({
   variable: "--headerFlavor",
@@ -20,10 +10,11 @@ const flavor = Flavors({
   weight: "400",
 });
 
-const robotoSlab = Roboto_Slab ({
-  variable: "--font-roboto-slab",
-  subsets: ["latin"]
-})
+const robotoSlab = Roboto_Slab({
+  variable: "--robotoSlab",
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -37,8 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${flavor.variable} ${robotoSlab.variable}`}>
+      <body className={`${robotoSlab.variable} ${flavor.variable}`}>
         <Header />
         {children}
         <Footer />

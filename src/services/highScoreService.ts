@@ -26,7 +26,6 @@ export class HighScoreService {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, score }),
       });
-
       if (!response.ok) {
         throw new Error("Failed to save to High Score");
       }
