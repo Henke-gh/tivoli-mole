@@ -3,16 +3,19 @@ import "./Mole.css";
 import Image from "next/image";
 
 export interface MoleProps {
-  isActive: boolean;
-  onWhack: () => void;
-  whacked: boolean;
+  readonly isActive: boolean;
+  readonly onWhack: () => void;
+  readonly whacked: boolean;
 }
 
 const Mole: React.FC<MoleProps> = ({ isActive, onWhack, whacked }) => {
   return (
-    <div className="mole-container" onClick={isActive ? onWhack : undefined}>
+    <div className="mole-container">
       {isActive && (
-        <div className={`mole ${whacked ? "whacked" : ""}`}>
+        <div className={`mole ${whacked ? "whacked" : ""}`}
+            onClick={onWhack}
+            role="button"
+            tabIndex={0}>
           <Image
             className="moleImg"
             src={"./darkerMole.svg"}
