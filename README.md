@@ -1,12 +1,11 @@
 ### Whack-a-Mole
 
-A fun arcade game built with modern web technologies that tests your reflexes.
+A fun arcade game rebuilt with Next.js, React, TypeScript, and Supabase, designed to test your reflexes and speed.
 
 ## Description
 
-Whack-a-Mole is a simple yet highly engaging and interactive arcade game developed with modern web technologies. Built with React, TypeScript, HTML, and CSS, and powered by Supabase on the backend, the game challenges players to click on randomly appearing moles before they disappear. As time passes, the speed at which the moles appear increases, pushing the player's reflexes to the limit.
-
-The gameplay is intuitive and fun: moles pop up at random locations on the screen, and the player earns points by clicking them before they disappear. The game ends after a fixed period, at which point the player can enter their name and save their score to a leaderboard. This leaderboard is managed through Supabase, which handles data persistence using Remote Procedure Calls (RPCs).
+Whack-a-Mole is a simple yet highly engaging and interactive arcade game developed with modern web technologies. Originally built with React, TypeScript, HTML, and CSS, the project has now been migrated to Next.js to enhance performance and maintainability while still leveraging React. Supabase powers the backend, providing a robust cloud-based database and RPC-based data access.
+The gameplay is intuitive and fun: moles pop up at random locations on the screen, and the player earns points by clicking them before they disappear. As time passes, the speed at which the moles appear increases, pushing the player's reflexes to the limit. The game ends after a fixed period, at which point the player can enter their name and save their score to a leaderboard managed through Supabase.
 
 ## Core Features
 
@@ -15,7 +14,8 @@ The gameplay is intuitive and fun: moles pop up at random locations on the scree
 - **Speed Progression**: As the game advances, mole appearance intervals become shorter.
 - **Responsive Design**: Playable on all modern browsers and devices.
 - **Leaderboard Integration**: Save and view top scores using Supabase.
-- **Supabase Backend**: Uses RPC functions for efficient, scalable data handling.
+- **Supabase Backend**: Cloud database for efficient, scalable data handling.
+-**Admin Functionality**: Ability to adjust cost, stamp, and metal 
 
 ### Technologies Used
 
@@ -23,72 +23,30 @@ The gameplay is intuitive and fun: moles pop up at random locations on the scree
 
 - **HTML**: Game structure and layout.
 - **CSS**: Styling, animations, and responsive design.
-- **React + TypeScript**: Component logic, state management, timers, scoring.
+- **React**: Component-based UI library for interactive interfaces.
+- **Typescript**: Static typing for improved developer experience and safety.
 
 # Backend:
 
 - **Supabase**: Cloud-based backend with PostgreSQL and RPC functions.
-- **Vite**: Lightweight and fast bundler with Hot Module Replacement (HMR).
+- **Next.js API Routes**: For handling server-side logic when needed.
 
-## Vite + React + TypeScript Setup
-
-This project uses Vite for fast development and build processes. Two official plugins are supported:
-
-- `@vitejs/plugin-react`: Uses Babel for Fast Refresh.
-- `@vitejs/plugin-react-swc`: Uses SWC for faster performance.
-
-## ESLint Configuration
-
-To enable type-aware linting in production environments, extend the config with tseslint.config:
-
-```js
-export default tseslint.config({
-  extends: [
-    ...tseslint.configs.recommendedTypeChecked,
-    // or stricter:
-    ...tseslint.configs.strictTypeChecked,
-    // optionally:
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-You can enhance linting with React-specific rules by installing:
-
-```js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
 
 ## Project Structure
 
 ```
-📦whack-a-mole
- ┣ 📂src
- ┃ ┣ 📂components
- ┃ ┃ ┣ 📜HighScores.tsx       # Displays the leaderboard
- ┃ ┃ ┣ 📜GameOver.tsx         # Game over screen
- ┃ ┣ 📂lib
- ┃ ┃ ┣ 📜databaseFunction.ts  # Supabase RPC integration
- ┃ ┣ 📜App.tsx                # Main game logic and UI
- ┣ 📜README.md                # Project documentation
+📦Tivoli-Mole
+ ┣ 📂app / pages      # Next.js routing
+ ┃ ┣ 📜page.tsx / index.tsx  # Main game screen
+ ┃ ┣ 📜admin.tsx     # Admin panel for game adjustments
+ ┣ 📂components
+ ┃ ┣ 📜HighScores.tsx       # Displays the leaderboard
+ ┃ ┣ 📜GameOver.tsx         # Game over screen
+ ┣ 📂lib
+ ┃ ┣ 📜supabase.ts  # Supabase client integration
+ ┣ 📜.env.local              # Environment variables
+ ┣ 📜next.config.js          # Next.js configuration
+ ┣ 📜README.md               # Project documentation
 ```
 
 ### How to Play
@@ -104,97 +62,71 @@ export default tseslint.config({
 # Prerequisites:
 
 - Node.js v14 or higher
-- A configured Supabase project with RPC functions
+- * A configured Supabase project with the necessary tables
 
 # Steps:
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/whack-a-mole.git
+git clone https://github.com/Henke-gh/tivoli-mole.git
 cd whack-a-mole
 npm install
 ```
+1. Set up your .env.local file in the root directory:
 
-2. Set up your `.env` file:
+SUPABASE_URL=your-supabase-url
+SUPABASE_ANON_KEY=your-supabase-key
+TIVOLI_BANK_KEY=your-tivoli-bank-key
 
-```
-REACT_APP_SUPABASE_URL=your-supabase-url
-REACT_APP_SUPABASE_ANON_KEY=your-supabase-key
-```
+⚠️ Note: Never commit .env.local to version control. It contains sensitive credentials.
 
-3. Start the development server:
+2. Start the development server:
 
-```bash
-npm start
-```
+bash
+npm run dev
 
-4. Visit:
+3. Visit:
 
-```
 http://localhost:3000
+```
+
 ```
 
 ## Supabase Setup
 
 Log in to your Supabase Dashboard
-
-Go to app.supabase.com and sign in to your account
-Select your project
-
+Go to app.supabase.com and sign in to your account Select your project
 Open the Table Editor
-
-In the left sidebar, click on "Table Editor"
-Click the "New Table" button in the top-right corner
-
+In the left sidebar, click on "Table Editor" Click the "New Table" button in the top-right corner
 Enter Table Details
-
-Name: Enter a name for your table (e.g., "high_scores")
-Description (optional): Add a brief description
-
+Name: Enter a name for your table (e.g., "high_scores") Description (optional): Add a brief description
 Add Columns
-
 For each column you need, click "Add column" and enter:
-
-Name: Column name (e.g., "id", "name", "score")
-Type: Data type (e.g., "int8" for numbers, "text" for text)
-Default Value (optional): Set a default value if needed
-Check "Primary Key" for your ID column
-Check "Is Identity" if you want auto-incrementing IDs
-
+Name: Column name (e.g., "id", "name", "score") Type: Data type (e.g., "int8" for numbers, "text" for text) Default Value (optional): Set a default value if needed Check "Primary Key" for your ID column Check "Is Identity" if you want auto-incrementing IDs
 Configure RLS (Row Level Security)
-
-You can enable RLS for added security
-For a basic setup, you can leave it disabled initially
-
+You can enable RLS for added security For a basic setup, you can leave it disabled initially
 Save the Table
-
 Click "Save" to create your table
 
 ## 👥 Contributing
-
 Contributions are welcome! To get involved:
-
 1. Fork the repository.
 2. Create a new branch:
 
 ```bash
 git checkout -b feature-name
-```
 
-3. Make your changes and commit:
+1. Make your changes and commit:
 
-```bash
+ ``` bash
 git commit -m "Describe your feature"
-```
-
-4. Push your branch:
+1. Push your branch:
 
 ```bash
 git push origin feature-name
+1. Open a Pull Request.
 ```
-
-5. Open a Pull Request.
 
 ### License and Credits
 

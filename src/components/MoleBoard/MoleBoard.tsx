@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Mole from "../Mole/Mole";
 import "./MoleBoard.css";
 import type { MoleState, WhackAMoleGameProps } from "../../types/types";
+import StartGameModal from "../StartGameModal/StartGameModal";
 
 const NUM_MOLES = 12;
 
@@ -17,40 +18,43 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }))
   );
   const [playerScore, setPlayerScore] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(10); // 5 seconds
+  const [timeLeft, setTimeLeft] = useState<number>(60); // 60 seconds
   const [gameEnd, setGameEnd] = useState<boolean>(false);
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
 
   // Activate a random mole
   useEffect(() => {
-    const interval = setInterval(() => {
-      const index = Math.floor(Math.random() * NUM_MOLES);
-      setMoles((prev) =>
-        prev.map((mole, i) => ({
-          ...mole,
-          active: i === index,
-        }))
-      );
-    }, 1000); // Every 1 seconds?
+    if (gameStarted && !gameEnd) {
+      const interval = setInterval(() => {
+        const index = Math.floor(Math.random() * NUM_MOLES);
+        setMoles((prev) =>
+          prev.map((mole, i) => ({
+            ...mole,
+            active: i === index,
+          }))
+        );
+      }, 1000); // Every 1 seconds?
 
-    return () => clearInterval(interval);
-  }, [gameEnd]);
+      return () => clearInterval(interval);
+    }
+  }, [gameStarted, gameEnd]);
 
   //timer logic
   useEffect(() => {
-    if (timeLeft > 0) {
+    if (gameStarted && timeLeft > 0) {
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000); // Decrease time every second
 
       return () => clearInterval(timer);
-    } else {
+    } else if (gameStarted && timeLeft === 0) {
       setGameEnd(true);
       if (onGameover) {
         updateScore?.(playerScore);
         onGameover();
       }
     }
-  }, [timeLeft, onGameover]);
+  }, [gameStarted, timeLeft, onGameover]);
 
   const handleWhack = (id: number) => {
     if (!gameEnd) {
@@ -72,8 +76,16 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }
   };
 
+  const hideModalAndStartGame = () => {
+    setGameEnd(false);
+    setPlayerScore(0);
+    setTimeLeft(60);
+    setGameStarted(true);
+  };
+
   return (
     <div className="moleboard-container">
+      {!gameStarted && <StartGameModal onStartGame={hideModalAndStartGame} />}
       <h1 className="headerText">Happy guacing!</h1>
       <p className="game-p withBorder top">Time Left: {timeLeft} seconds</p>
       {!gameEnd && (
