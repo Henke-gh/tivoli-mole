@@ -4,29 +4,38 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  aspect-ratio: 1;
   overflow: hidden;
 }
 
-.mole-hole-upper,
 .mole-hole-lower {
   height: 50%;
-  position: relative;
-  background: burlywood;
+  position: absolute;
+  top: 55%;
 }
 
 .mole-hole-lower {
   z-index: 2;
 }
 
+.bowl {
+  width: auto;
+  height: fit-content;
+}
+
 .mole {
   position: absolute;
   height: 50%;
-  aspect-ratio: 0.5;
-  background-color: grey;
+  aspect-ratio: 1.5;
   z-index: 1;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 55%;
   transform: translate(-50%, -50%);
+}
+
+.moleImg {
+  height: 4rem;
+  width: auto;
 }
 
 .guacamole {
