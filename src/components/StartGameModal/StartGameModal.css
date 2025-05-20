@@ -1,0 +1,35 @@
+.modalOverlay {
+  background-color: rgba(144, 238, 144, 0.5);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: 900;
+}
+
+.startGameModal {
+  font-family: var(--robotoSlab);
+  background-color: var(--light-yellow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 85%;
+  padding: 2rem;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 2px solid var(--dark-green);
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
