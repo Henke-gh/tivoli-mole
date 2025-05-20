@@ -16,7 +16,7 @@
 }
 
 .footer-p {
-font-family: var(--font-roboto-slab);
+font-family: var(--robotoSlab);
 font-size: 2rem;
 color: var(--light-green);
 -webkit-text-stroke: 1px var(--dark-green);
