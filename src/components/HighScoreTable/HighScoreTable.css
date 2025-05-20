@@ -9,54 +9,26 @@
   background-color: #fff;
 }
 
-/*.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-  }*/
-
 .title {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 20px;
   text-align: center;
   color: #4d4d4d;
-  text-shadow: 2px 2px 0px #568925, 0 0 8px rgba(175, 215, 138, 0.4),
-    0 0 10px #c05500;
   font-family: "Press Start 2P", "Courier New", monospace;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 10px;
-  border: 3px solid #ff4d00;
-  background-color: #afd78a;
-  box-shadow: inset 0 0 5px rgba(86, 137, 37, 0.5);
-  position: relative;
-  animation: subtleBlink 3s ease-in-out infinite alternate;
+  padding: 15px;
+  margin-top: -32px;
+  margin-right: -32px;
+  margin-left: -32px;
+  margin-bottom: 20px;
+  background-color: #8dcb52;
+  border: 4px dashed #568925;  /* heavier border with discontiued lines and not angles */
+  border-radius: 12px; 
 }
+  
 
-.title::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border: 1px dashed #ff4d00; /* Borde punteado naranja brillante */
-  pointer-events: none;
-}
-
-@keyframes subtleBlink {
-  0% {
-    text-shadow: 2px 2px 0px #568925, 0 0 5px rgba(175, 215, 138, 0.3),
-      0 0 10px #c05500;
-  }
-  100% {
-    text-shadow: 2px 2px 0px #568925, 0 0 8px rgba(175, 215, 138, 0.6),
-      0 0 15px #c05500;
-  }
-}
+  
 
 .no-scores {
   text-align: center;
@@ -73,13 +45,116 @@
 }
 
 /* Table Styles */
+
 .score-table {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #edeba6;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+/*Columns names */
+.column-header {
+  padding: 12px;
+  background-color: #e3df9a; 
+  font-weight: bold;
+}
+
+.column-header:nth-child(1) {
+  padding-right: 0px; 
+}
+
+.column-header:nth-child(2) {
+  padding-left: 0px;
+  padding-right: 60px;
+}
+
+.column-header:nth-child(3) {
+  padding-left: 50px; 
+}
+
+/* Alternancia de filas */
+.even-row {
+  background-color:#f2efb7; 
+}
+.odd-row {
+  background-color: #edeba6;
+}
+
+/* Basic style for cells*/
+.cell {
+  padding: 12px;
+  position: relative;
+  border: none;
+}
+
+.cell:nth-child(1) {
+  padding-right: 0px; 
+}
+.cell:nth-child(2) {
+  padding-left: 0px;
+  padding-right: 60px;
+}
+.cell:nth-child(3) {
+  padding-left: 50px; 
+}
+
+.cell:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -3px;
+  width: 16px;              /* más corta */
+  height: 2px;
+  background-color:#000000;
+  transform: translateY(-50%);
+}
+
+/* Línea larga entre Name → Score */
+.cell:nth-child(3)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  width: 48px;             /* más larga */
+  height: 2px;
+  background-color:#000000;
+  transform: translateY(-50%);
+}
+
+/* Responsive Design for Mobiles */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem; 
+    padding: 10px; 
+    margin-top: -16px;
+    margin-right: -16px;
+    margin-left: -16px;
+    margin-bottom: 15px;
+    border-width: 3px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/*.score-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   margin-top: 20px;
   table-layout: fixed;
-  display: table; /* Ensure table displays as a table */
+  display: table;
 }
 
 .score-table thead {
@@ -112,7 +187,7 @@
   border-bottom: 2px solid #ddd;
 }
 
-/* Column widths */
+
 .score-table th:nth-child(1),
 .score-table td:nth-child(1) {
   width: 20%;
@@ -147,20 +222,5 @@
 .score-table tbody tr:hover {
   background-color: #f0f8ff;
   transition: background-color 0.2s ease;
-}
+}  */
 
-@media (max-width: 480px) {
-  .high-score-table {
-    padding: 10px;
-  }
-
-  .score-table th,
-  .score-table td {
-    padding: 8px;
-    font-size: 0.9rem;
-  }
-
-  .title {
-    font-size: 1.2rem;
-  }
-}

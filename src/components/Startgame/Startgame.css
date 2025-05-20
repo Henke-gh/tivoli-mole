@@ -1,64 +1,112 @@
-/* Startgame.css - Styles for the start screen */
-
 .startgame {
-  /*  position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%; */
-  /* Removed some styling to make the Startgame component fit inside our header/footer layout */
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #b3c06c, #42839d);
+  background:#fcffd9;
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 1000;
+  min-height: 100vh;
+  width: 100%;
+  font-family: robobo slab;
 }
 
 .startgame.visible {
   opacity: 1;
 }
 
-.startgame-content {
+.startgame-container {
+  display: flex;
+  flex-direction: column;
   width: 90%;
-  max-width: 600px;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transform: translateY(30px);
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-width: 800px;
+  margin: 2rem auto;
+  gap: 2rem;
 }
 
-.startgame.visible .startgame-content {
-  transform: translateY(0);
+.game-intro,
+.high-scores-container,
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+  background-color: #EDEBA6;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.startgame-header {
+  background-color: #EDEBA6; 
+  padding: 2rem;
+  border-radius: 8px;
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+  margin-bottom: 1.5rem; /* Separation between blocks*/
 }
 
 .game-title {
   font-size: 3rem;
-  color: #e8690e;
-  margin-bottom: 1.5rem;
+  color: #0f0e0e;
+  margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   font-family: "Comic Sans MS", cursive, sans-serif;
   letter-spacing: 1px;
 }
 
-.game-mascot {
-  margin: 1.8rem 0;
-}
-
-.mole-graphic {
-  font-size: 5rem;
-  display: inline-block;
-  animation: bounce 2s infinite;
+.game-description {
+  font-size: 1.2rem;
+  color: #2e2a2a;
+  line-height: 1.6;
+  max-width: 600px;
   margin: 0 auto;
 }
 
+/* Body - Awards and Mole Graphic */
+.startgame-body {
+  display: flex;
+  justify-content: space-between;
+  align-items:flex-start; /*center;*/
+  gap: 2rem;
+  background-color: #EDEBA6; 
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.awards {
+  flex: 1;
+}
+
+.awards h2 {
+  font-size: 1.5rem;
+  color: #2e2b2b;
+}
+
+.awards ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.awards li {
+  font-size: 1.2rem;
+  color: #2e2b2b;
+  margin-bottom: 0.5rem;
+}
+
+.mole-graphic {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  animation: bounce 2s infinite;
+}
+
+.mole-graphic img {
+  width: 100px;
+  height: auto;
+}
+
+/* Bounce Animation */
 @keyframes bounce {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0);
   }
   50% {
@@ -67,54 +115,72 @@
 }
 
 .welcome-text {
-  margin-bottom: 1.5rem;
+  position: relative;
+  text-align: center;
 }
 
 .welcome-text h2 {
   font-size: 2rem;
   color: #2e2b2b;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.welcome-text p {
-  font-size: 1.2rem;
-  color: #2e2a2a;
-  line-height: 1.6;
+.flagTrio {
+  position: absolute;
+  top: unset;
+  bottom: 6rem;
+  left: 70%;
+  transform: translateX(-50%);
+  right: 2rem;
+  width: 240px;
+  height: 240px;
+  animation: float 3s ease-in-out infinite;
+  z-index: 1; 
 }
 
-.controls-info {
-  background-color: #f5f5f5;
-  border-left: 4px solid #e05a00;
-  padding: 1rem;
-  margin: 1.5rem 0;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.ticket-selection-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.ticket-selector {
+  flex: 1;
   text-align: left;
-  border-radius: 4px;
-}
-
-.controls-info p {
-  margin: 0;
-  color: #555;
-  font-style: italic;
 }
 
 .start-button {
   padding: 1rem 3rem;
   font-size: 1.5rem;
-  background-color: #ff4d00;
-  color: white;
+  background-color: #8dcb52;
+  color: #000;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 0 #c05500;
-  margin-top: 1rem;
+  box-shadow: 0 4px 0 #abf465;
+  margin-left: 2rem;
+  border: 4px dashed #568925;  /* heavier border with discontiued lines and not angles */
+    border-radius: 12px; 
 }
 
 .start-button:hover {
-  background-color: #ff8533;
+  background-color:  #77b939;
   transform: translateY(-3px);
-  box-shadow: 0 7px 0 #c05500;
+  box-shadow: 0 7px 0#7be518;
 }
 
 .start-button:active {
@@ -122,33 +188,125 @@
   box-shadow: 0 2px 0 #c05500;
 }
 
-summary {
-  font-size: 1.2rem;
-  color: #2e2a2a;
-  line-height: 1.6;
-  margin-top: 1rem;
-}
-
-/* Responsive design */
+/* Responsive  design for mobiles */
 @media (max-width: 768px) {
+  .startgame-container {
+    width: 95%;
+    margin: 1rem auto;
+    gap: 1.5rem;
+  }
+  
+  .game-intro,
+  .high-scores-container,
+  .welcome-text {
+    padding: 1.5rem;
+  }
+  
+  .startgame-header {
+    padding: 1.5rem;
+  }
+  
+  .startgame-body {
+    flex-direction: row; /* Mantener en fila incluso en móvil */
+    padding: 1.2rem;
+    gap: 1rem; /* Reducido para móvil */
+    align-items: center;
+  }
+  
   .game-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  
+  .game-description {
+    font-size: 1rem;
+    text-align: center;
   }
 
   .mole-graphic {
-    font-size: 4rem;
+    justify-content: flex-end; /* Mantener a la derecha */
+  }
+  
+  .mole-graphic img {
+    width: 60px; /* Reducido para acomodar mejor en la vista móvil */
+  }
+
+  .awards {
+    flex: 1;
+  }
+  
+  .awards h2 {
+    font-size: 1.2rem;
+  }
+  
+  .awards li {
+    font-size: 0.9rem;
   }
 
   .welcome-text h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+  }
+  
+  .flagTrio {
+    width: 100px; /* Más pequeño en móvil */
+    height: 100px;
+    bottom: 5rem; /* Posición ajustada */
+    left: 70%;
   }
 
-  .welcome-text p {
-    font-size: 1rem;
+  .ticket-selection-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .ticket-selector {
+    width: 70%;
+    text-align: left;
   }
 
   .start-button {
-    padding: 0.8rem 2.5rem;
-    font-size: 1.3rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    margin-left: 0;
+    width: auto;
+    max-width: none;
+    max-width: 250px;
+  }
+}
+
+/* Aditional responsive for really small screams*/
+@media (max-width: 480px) {
+  .startgame-container {
+    width: 100%;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  
+  .game-intro,
+  .high-scores-container,
+  .welcome-text {
+    padding: 1rem;
+  }
+  
+  .game-title {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-text h2 {
+    font-size: 1.2rem;
+  }
+  
+  .flagTrio {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .start-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    border-width: 3px;
   }
 }
