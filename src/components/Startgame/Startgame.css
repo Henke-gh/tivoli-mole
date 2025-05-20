@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background:#fcffd9;
+  background: #fcffd9;
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 1000;
   min-height: 100vh;
   width: 100%;
-  font-family: robobo slab;
+  font-family: var(--robotoSlab);
+  color: var(--dark-brown);
 }
 
 .startgame.visible {
@@ -25,11 +26,10 @@
 }
 
 .game-intro,
-.high-scores-container,
-.welcome-text {
+.high-scores-container {
   display: flex;
   flex-direction: column;
-  background-color: #EDEBA6;
+  background-color: #edeba6;
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -37,25 +37,23 @@
 }
 
 .startgame-header {
-  background-color: #EDEBA6; 
+  background-color: #edeba6;
   padding: 2rem;
   border-radius: 8px;
   /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-  margin-bottom: 1.5rem; /* Separation between blocks*/
 }
 
 .game-title {
   font-size: 3rem;
-  color: #0f0e0e;
+  color: var(--dark-brown);
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  font-family: "Comic Sans MS", cursive, sans-serif;
   letter-spacing: 1px;
 }
 
 .game-description {
   font-size: 1.2rem;
-  color: #2e2a2a;
+  color: var(--dark-brown);
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
@@ -65,9 +63,9 @@
 .startgame-body {
   display: flex;
   justify-content: space-between;
-  align-items:flex-start; /*center;*/
+  align-items: flex-start; /*center;*/
   gap: 2rem;
-  background-color: #EDEBA6; 
+  background-color: #edeba6;
   padding: 1.5rem;
   border-radius: 8px;
 }
@@ -78,7 +76,7 @@
 
 .awards h2 {
   font-size: 1.5rem;
-  color: #2e2b2b;
+  color: var(--dark-brown);
 }
 
 .awards ul {
@@ -88,7 +86,7 @@
 
 .awards li {
   font-size: 1.2rem;
-  color: #2e2b2b;
+  color: var(--dark-brown);
   margin-bottom: 0.5rem;
 }
 
@@ -106,7 +104,8 @@
 
 /* Bounce Animation */
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -117,11 +116,16 @@
 .welcome-text {
   position: relative;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
 }
 
 .welcome-text h2 {
   font-size: 2rem;
-  color: #2e2b2b;
+  color: var(--dark-brown);
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -136,11 +140,12 @@
   width: 240px;
   height: 240px;
   animation: float 3s ease-in-out infinite;
-  z-index: 1; 
+  z-index: 1;
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -173,12 +178,12 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 0 #abf465;
   margin-left: 2rem;
-  border: 4px dashed #568925;  /* heavier border with discontiued lines and not angles */
-    border-radius: 12px; 
+  border: 4px dashed #568925; /* heavier border with discontiued lines and not angles */
+  border-radius: 12px;
 }
 
 .start-button:hover {
-  background-color:  #77b939;
+  background-color: #77b939;
   transform: translateY(-3px);
   box-shadow: 0 7px 0#7be518;
 }
@@ -195,29 +200,29 @@
     margin: 1rem auto;
     gap: 1.5rem;
   }
-  
+
   .game-intro,
   .high-scores-container,
   .welcome-text {
     padding: 1.5rem;
   }
-  
+
   .startgame-header {
     padding: 1.5rem;
   }
-  
+
   .startgame-body {
     flex-direction: row; /* Mantener en fila incluso en móvil */
     padding: 1.2rem;
     gap: 1rem; /* Reducido para móvil */
     align-items: center;
   }
-  
+
   .game-title {
     font-size: 2.2rem;
     text-align: center;
   }
-  
+
   .game-description {
     font-size: 1rem;
     text-align: center;
@@ -226,7 +231,7 @@
   .mole-graphic {
     justify-content: flex-end; /* Mantener a la derecha */
   }
-  
+
   .mole-graphic img {
     width: 60px; /* Reducido para acomodar mejor en la vista móvil */
   }
@@ -234,11 +239,11 @@
   .awards {
     flex: 1;
   }
-  
+
   .awards h2 {
     font-size: 1.2rem;
   }
-  
+
   .awards li {
     font-size: 0.9rem;
   }
@@ -247,7 +252,7 @@
     font-size: 1.4rem;
     margin-bottom: 4rem;
   }
-  
+
   .flagTrio {
     width: 100px; /* Más pequeño en móvil */
     height: 100px;
@@ -261,7 +266,7 @@
     align-items: center;
     gap: 1rem;
   }
-  
+
   .ticket-selector {
     width: 70%;
     text-align: left;
@@ -282,28 +287,28 @@
   .startgame-container {
     width: 100%;
     padding: 0 1rem;
-    gap: 1rem;
+    gap: 2.5rem;
   }
-  
+
   .game-intro,
   .high-scores-container,
   .welcome-text {
     padding: 1rem;
   }
-  
+
   .game-title {
     font-size: 1.8rem;
   }
-  
+
   .welcome-text h2 {
     font-size: 1.2rem;
   }
-  
+
   .flagTrio {
     width: 120px;
     height: 120px;
   }
-  
+
   .start-button {
     padding: 0.7rem 1.5rem;
     font-size: 1.1rem;

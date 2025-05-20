@@ -7,6 +7,7 @@ body,
   --light-yellow: #fcffd9;
   --dark-yellow: #edeba6;
   --brown: #57452c;
+  --dark-brown: #393631;
   --light-brown: #bba587;
   --red: #e73f3f;
   --white: #ffffff;
@@ -36,7 +37,6 @@ body {
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
   background-color: #fcffd9;
-  
 }
 
 /* 6. Improve media defaults */
