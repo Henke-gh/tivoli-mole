@@ -35,39 +35,54 @@ const Startgame: React.FC<StartgameProps> = ({
 
   return (
     <section className={`startgame ${isVisible ? "visible" : ""}`}>
-      <div className="startgame-content">
-        <article>
+      <div className="startgame-container">
+        <article className= "game-intro">
+        <div className="startgame-header">
           <h1 className="game-title">{gameTitle}</h1>
-          <p>
+          <p className="game-description">
             The moles have invaded our guacamole feast. Help us out by whacking
             as many as you can before the timer runs out.
           </p>
+          </div>
+
+          <div className="startgame-body">
+          <div className="awards">
           <h2>Awards:</h2>
           <ul>
             <li>Animal: Tucan</li>
             <li>Metal: Gold</li>
           </ul>
+          </div>
           <div className="mole-graphic">
-            <img src="./Mole.svg" alt="Mole" />
+            <img src="./Mole-new.svg" alt="Mole" />
+          </div>
           </div>
         </article>
+      
+        
 
         <article className="high-scores-container">
           <HighScoreTable />
         </article>
 
         <article className="welcome-text">
+        <img src="flagTrio-new.svg" alt="" className="flagTrio" />
           <h2>Buy ticket</h2>
+          
+          <div className="ticket-selection-container">
+            <div className="ticket-selector">
           <AttractionStampSelector
             baseCost={2}
             metalCost={4}
             onSelect={handleAttractionStampSelect}
           />
+            </div>
           <button className="start-button" onClick={handleStartGame}>
             To game
           </button>
+          </div>
         </article>
-      </div>
+     </div>
     </section>
   );
 };
