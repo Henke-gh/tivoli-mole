@@ -74,8 +74,8 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
 
   return (
     <div className="moleboard-container">
-      <h1>Happy guacing!</h1>
-      <p className="game-p">Time Left: {timeLeft} seconds</p>
+      <h1 className="headerText">Happy guacing!</h1>
+      <p className="game-p withBorder top">Time Left: {timeLeft} seconds</p>
       {!gameEnd && (
         <div className="moleboard">
           {moles.map((mole) => (
@@ -88,7 +88,7 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
           ))}
         </div>
       )}
-      <p className="game-p">Score: {playerScore}</p>
+      <p className="game-p withBorder bottom">Score: {playerScore}</p>
     </div>
   );
 };
