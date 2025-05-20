@@ -1,5 +1,6 @@
 import React from "react";
 import "./Mole.css";
+import Image from "next/image";
 
 export interface MoleProps {
   isActive: boolean;
@@ -10,10 +11,27 @@ export interface MoleProps {
 const Mole: React.FC<MoleProps> = ({ isActive, onWhack, whacked }) => {
   return (
     <div className="mole-container" onClick={isActive ? onWhack : undefined}>
-      <div className="mole-hole-upper"></div>
-      <div className="mole-hole-lower"></div>
-      {isActive && <div className={`mole ${whacked ? "whacked" : ""}`} />}
+      {isActive && (
+        <div className={`mole ${whacked ? "whacked" : ""}`}>
+          <Image
+            className="moleImg"
+            src={"./darkerMole.svg"}
+            alt="A hungry mole."
+            width={50}
+            height={50}
+          />
+        </div>
+      )}
       {whacked && <div className="guacamole" />}
+      <div className="mole-hole-lower">
+        <Image
+          className="bowl"
+          src={"./boardBowl.svg"}
+          alt="A bowl of guacamole"
+          width={50}
+          height={50}
+        />
+      </div>
     </div>
   );
 };
