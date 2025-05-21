@@ -5,13 +5,13 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  font-family: var(--robotoSlab);
+  color: var(--dark-brown);
 }
 
 .stamp-selector-title {
   font-size: 18px;
   font-weight: bold;
-  color: #333333;
   margin-bottom: 16px;
 }
 
@@ -38,11 +38,6 @@
 .option-title {
   font-weight: bold;
   display: block;
-  color: #333333;
-}
-
-.option-price {
-  color: #555555;
 }
 
 .stamp-note {
