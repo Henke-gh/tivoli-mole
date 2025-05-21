@@ -99,7 +99,12 @@ function Gameover({ score, onRestart }: GameoverProps) {
             {submissionMsg && (
               <p className="submission-message">{submissionMsg}</p>
             )}
+
+          <div className="stars-over">
+                <img src="./star.svg" alt="Star 1" className="star star-right" />
+                <img src="./star.svg" alt="Star 2" className="star star-bottom-left" />
           </div>
+        </div>     
         )}
       </section>
 
@@ -113,6 +118,13 @@ function Gameover({ score, onRestart }: GameoverProps) {
           Back to Start
         </button>
       </section>
+      <article>
+        <div className="gameover-images">
+          <img src="./flagTrio-Left.svg" alt="" className="flagTrio-Left" />
+          <img src="./Mole-Guacamole.svg" alt="" className= "Mole-Guacamole"/>
+          <img src="flagTrio-new.svg" alt="" className="flagTrio-right" />
+        </div>
+      </article>
     </div>
   );
 }
