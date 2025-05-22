@@ -2,36 +2,33 @@ import React, { useState, useEffect } from "react";
 import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
 import AttractionStampSelector from "../StampGame/StampGame";
+import PaymentSection from "../PaymentSection";
+import { useGameContext } from "../GameContext";
 
 interface StartgameProps {
-  onStartGame: () => void;
   gameTitle?: string;
 }
 
 const Startgame: React.FC<StartgameProps> = ({
-  onStartGame,
   gameTitle = "Welcome to Guac-a-Mole",
 }) => {
-  console.log("✅ Startgame.tsx se está montando");
   const [isVisible, setIsVisible] = useState(false);
 
   const handleAttractionStampSelect = (option: "basic" | "premium") => {
     console.log("Stamp option selected:", option);
   };
 
-  useEffect(() => {
+useEffect(() => {
     // Efecto para animación de entrada
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, []); 
 
-  const handleStartGame = () => {
-    setIsVisible(false);
-    setTimeout(onStartGame, 500);
-  };
+   const { hasPaid } = useGameContext();
+
 
   return (
     <section className={`startgame ${isVisible ? "visible" : ""}`}>
@@ -75,9 +72,7 @@ const Startgame: React.FC<StartgameProps> = ({
                 onSelect={handleAttractionStampSelect}
               />
             </div>
-            <button className="start-button" onClick={handleStartGame}>
-              To Game
-            </button>
+            <PaymentSection />
           </div>
         </article>
       </div>
