@@ -18,7 +18,7 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }))
   );
   const [playerScore, setPlayerScore] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(60); // 60 seconds
+  const [timeLeft, setTimeLeft] = useState<number>(30); // 30 seconds
   const [gameEnd, setGameEnd] = useState<boolean>(false);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
 
@@ -79,7 +79,6 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
   const hideModalAndStartGame = () => {
     setGameEnd(false);
     setPlayerScore(0);
-    setTimeLeft(60);
     setGameStarted(true);
   };
 
