@@ -50,6 +50,7 @@ export async function createTransaction(
     let data;
     try {
       data = responseText ? JSON.parse(responseText) : {};
+      console.log(data); //TODO Try to remove without breaking application
     } catch (e) {
       console.error("Failed to parse response:", responseText);
       throw new Error(`Invalid response format: ${responseText}`);
@@ -132,7 +133,6 @@ export async function processReward(
       // For stamp rewards
       payload = {
         amusement_id: GAME_CONFIG.AMUSEMENT_ID,
-        payout_amount: 0.1, // Small amount required for stamp transactions
         stamp_id: GAME_CONFIG.STAMP_ID,
       };
     }

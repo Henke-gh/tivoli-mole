@@ -2,6 +2,7 @@ import React from "react";
 import { useGameContext } from "./GameContext";
 import { GAME_CONFIG } from "../config/gameConfig";
 import { processPayment } from "../services/transactionService";
+import { processReward } from "../services/transactionService";
 
 const PaymentSection: React.FC = () => {
   const {
@@ -17,14 +18,14 @@ const PaymentSection: React.FC = () => {
   const handlePayment = async () => {
     setIsProcessing(true);
     setPaymentError(null);
-    handleStartGame;
 
     try {
       const result = await processPayment(jwtToken);
 
       if (result.success) {
         setHasPaid(true);
-        
+        handleStartGame();
+        processReward(jwtToken, "stamp")
       } else {
         setPaymentError(result.error || "Payment failed");
       }
