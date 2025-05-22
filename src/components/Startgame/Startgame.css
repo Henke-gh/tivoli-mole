@@ -98,7 +98,7 @@
 }
 
 .mole-graphic img {
-  width: 100px;
+  width: 120px;
   height: auto;
 }
 
@@ -233,7 +233,7 @@
   }
 
   .mole-graphic img {
-    width: 60px; /* Reducido para acomodar mejor en la vista móvil */
+    width: 80px; /* Reducido para acomodar mejor en la vista móvil */
   }
 
   .awards {
