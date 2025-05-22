@@ -18,7 +18,7 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }))
   );
   const [playerScore, setPlayerScore] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(30); // 30 seconds
+  const [timeLeft, setTimeLeft] = useState<number>(30); // sets game timer to 30 seconds
   const [gameEnd, setGameEnd] = useState<boolean>(false);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
 

@@ -12,7 +12,6 @@ const Startgame: React.FC<StartgameProps> = ({
   onStartGame,
   gameTitle = "Welcome to Guac-a-Mole",
 }) => {
-  console.log("✅ Startgame.tsx se está montando");
   const [isVisible, setIsVisible] = useState(false);
 
   const handleAttractionStampSelect = (option: "basic" | "premium") => {
