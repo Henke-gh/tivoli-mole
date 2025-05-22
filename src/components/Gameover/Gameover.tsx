@@ -82,6 +82,7 @@ function Gameover({ score, onRestart }: GameoverProps) {
             <p className="game-over-text">You guaced {score} moles.</p>
             <form onSubmit={handleSubmit}>
               <label htmlFor="name">Enter your initials:</label>
+              <div className="input-button-row">
               <input
                 type="text"
                 id="name"
@@ -95,6 +96,7 @@ function Gameover({ score, onRestart }: GameoverProps) {
               <button type="submit" disabled={isSubmitting}>
                 Submit
               </button>
+              </div>
             </form>
             {submissionMsg && (
               <p className="submission-message">{submissionMsg}</p>
