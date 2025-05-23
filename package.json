@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-     "dev:3001": "next dev -p 3001"
+    "dev:3001": "next dev -p 3001"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.8",
     "dotenv": "^16.5.0",
     "jsonwebtoken": "^9.0.2",
