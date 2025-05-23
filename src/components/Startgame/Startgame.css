@@ -154,11 +154,26 @@
 }
 
 .ticket-selection-container {
-  display: flex;
-  justify-content: space-between;
+  display: row;
+  justify-content: column;
   align-items: center;
   width: 100%;
   padding: 1rem 0;
+}
+
+.ticket-type {
+  font-size: 1.2rem;
+  color: var(--dark-brown);
+  font-weight: 600;
+ }
+
+ .ticket-prices-display h3 {
+  font-size: 1.3rem;
+  color: #e73f3f;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: normal;
+  text-transform: none;
 }
 
 .ticket-selector {
@@ -177,7 +192,7 @@
   font-weight: bold;
   transition: all 0.3s ease;
   box-shadow: 0 4px 0 #abf465;
-  margin-left: 2rem;
+  margin-top: 1.5rem;
   border: 4px dashed #568925; /* heavier border with discontiued lines and not angles */
   border-radius: 12px;
 }
@@ -229,11 +244,11 @@
   }
 
   .mole-graphic {
-    justify-content: flex-end; /* Mantener a la derecha */
+    justify-content: flex-end; /*to fix at the right*/
   }
 
   .mole-graphic img {
-    width: 80px; /* Reducido para acomodar mejor en la vista móvil */
+    width: 80px; /* Reduce size to be confortable with mobil*/
   }
 
   .awards {
@@ -250,13 +265,14 @@
 
   .welcome-text h2 {
     font-size: 1.4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
+
 
   .flagTrio {
     width: 100px; /* Más pequeño en móvil */
     height: 100px;
-    bottom: 5rem; /* Posición ajustada */
+    bottom: 10rem; /* Posición ajustada */
     left: 70%;
   }
 
