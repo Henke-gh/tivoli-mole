@@ -90,6 +90,7 @@ function Gameover({ score, onRestart }: GameoverProps) {
             <p className="game-over-text">You guaced {score} moles.</p>
             <form onSubmit={handleSubmit}>
               <label htmlFor="name">Enter your initials:</label>
+              <p className="input-instruction">Enter your initials, max 3 characters.</p>
               <div className="input-button-row">
               <input
                 type="text"
