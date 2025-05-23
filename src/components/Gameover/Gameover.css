@@ -5,14 +5,15 @@
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  background-color: #fcffd9;
+  font-family: var(--robotoSlab);
+  background-color: var(--light-yellow);
   min-height: 100vh;
 }
 
 .game-over-title {
   font-size: 3rem;
   font-weight: bold;
-  color:#000;
+  color: var(--dark-brown);
   margin-bottom: 2rem;
 }
 
@@ -22,15 +23,14 @@
 
 .game-over-text {
   font-size: 1.5rem;
-  color:#000;
+  color: var(--dark-brown);
   margin-bottom: 1rem;
   line-height: 1.6;
 }
 
 .player-results > p.game-over-text {
-  color: red;
+  color: var(--red);
 }
-
 
 .highScore-message {
   background-color: #eaf1d5;
@@ -48,10 +48,10 @@
   font-weight: bold;
 }
 
-.game-over-text{
+.game-over-text {
   display: flex;
   flex-direction: column;
-  color:#000
+  color: #000;
 }
 
 .restart-button {
@@ -66,12 +66,12 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 0 #abf465;
   margin-left: 2rem;
-  border: 4px dashed #568925;  /* heavier border with discontiued lines and not angles */
-    border-radius: 12px; 
+  border: 4px dashed #568925; /* heavier border with discontiued lines and not angles */
+  border-radius: 12px;
 }
 
 .restart-button:hover {
-  background-color:  #77b939;
+  background-color: #77b939;
   transform: translateY(-3px);
   box-shadow: 0 7px 0#7be518;
 }
@@ -81,92 +81,89 @@
   box-shadow: 0 2px 0 #c05500;
 }
 
-
 .back-to-start {
   margin-top: 2rem; /* or fix to  32px*/
 }
 .back-to-start .game-over-text {
   font-size: 1.25rem; /* aprox. 20px */
-  font-weight: 500; 
+  font-weight: 500;
 }
 
 /* main container for the images*/
 .gameover-images {
-display: flex;
-justify-content: center;
-align-items: flex-end;
-gap: 2px;
-margin-top: 2rem;
-position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2px;
+  margin-top: 2rem;
+  position: relative;
 }
 
-
 .Mole-Guacamole {
-max-height: 240px;
-width: auto;
-position: relative;
-z-index: 2;
+  max-height: 240px;
+  width: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .flagTrio-Left,
 .flagTrio-right {
-max-height: 120px;
-width: auto;
-position: relative;
-top: -10px;
-transform-origin: bottom center;
+  max-height: 120px;
+  width: auto;
+  position: relative;
+  top: -10px;
+  transform-origin: bottom center;
 }
 
 /* Specific for left flag*/
 .flagTrio-Left {
-animation: waveLeft 3s ease-in-out infinite;
+  animation: waveLeft 3s ease-in-out infinite;
 }
 
 /* Specific for right flag*/
 .flagTrio-right {
-animation: waveRight 3.5s ease-in-out infinite;
+  animation: waveRight 3.5s ease-in-out infinite;
 }
-
 
 @keyframes waveLeft {
-0% {
-  transform: rotate(0deg);
-}
-25% {
-  transform: rotate(-3deg);
-}
-50% {
-  transform: rotate(0deg);
-}
-75% {
-  transform: rotate(3deg);
-}
-100% {
-  transform: rotate(0deg);
-}
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes waveRight {
-0% {
-  transform: rotate(0deg);
-}
-25% {
-  transform: rotate(3deg);
-}
-50% {
-  transform: rotate(0deg);
-}
-75% {
-  transform: rotate(-3deg);
-}
-100% {
-  transform: rotate(0deg);
-}
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 /*NEW HIGH SCORE SUBMIT*/
 
 .highScore-message {
-  background-color: #ECABEF;
+  background-color: #ecabef;
   border: 3px dashed #8dcb52;
   border-radius: 10px;
   padding: 1.25rem;
@@ -177,10 +174,9 @@ animation: waveRight 3.5s ease-in-out infinite;
   margin-left: auto;
   margin-right: auto;
   width: 95%;
-  position: relative;/*for the use of the stars */
+  position: relative; /*for the use of the stars */
   overflow: hidden; /*for the use of the stars */
 }
-
 
 .highScore-message p.game-over-text {
   font-size: 1.4rem;
@@ -200,18 +196,18 @@ animation: waveRight 3.5s ease-in-out infinite;
 }
 .highScore-message form {
   display: flex;
-  flex-direction:column;/*row;*/
+  flex-direction: column; /*row;*/
   align-items: center;
- justify-content: center;      
+  justify-content: center;
   margin-top: 1.25rem;
   width: 100%;
 }
 
 .highScore-message label {
-font-size: 1.15rem;
+  font-size: 1.15rem;
   font-weight: bold;
   color: #000;
-  display:block; 
+  display: block;
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -223,23 +219,22 @@ font-size: 1.15rem;
   text-align: center;
   border: 3px solid #8dcb52;
   border-radius: 8px;
-  background-color: #EDEBA6;
+  background-color: #edeba6;
   padding: 0.5rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
   color: #000;
- 
 }
 /* Adjustment to the imput and bottom will be in the same row*/
 .highScore-message .input-button-row {
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-width: 100%;
-margin-top: 0.5rem;
-gap: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5rem;
+  gap: 0px;
 }
 
 .highScore-message input:focus {
@@ -250,7 +245,7 @@ gap: 0px;
 .highScore-message button {
   padding: 0.7rem 1.8rem;
   font-size: 1.2rem;
-  background-color: #8DCB52;
+  background-color: #8dcb52;
   color: #000;
   border: none;
   border-radius: 50px;
@@ -290,19 +285,17 @@ gap: 0px;
 .star {
   width: 50px;
   height: auto;
-object-fit: contain;
-position: absolute;
-z-index: 1;
+  object-fit: contain;
+  position: absolute;
+  z-index: 1;
 }
 
 .star-right {
-  top: -3px; 
-  right: 3px; 
+  top: -3px;
+  right: 3px;
 }
 
 .star-bottom-left {
   bottom: -3px;
-  left: 3px; 
+  left: 3px;
 }
-
-
