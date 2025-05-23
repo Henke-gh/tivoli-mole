@@ -8,33 +8,35 @@ export default function ClientSection({ email }: { email: string }) {
   const router = useRouter();
   const supabase = createClient();
   const [cost, setCost] = useState<number | "">("");
+  const [id, setId] = useState<number | "">("");
+  const [currentId, setCurrentId] = useState<number | null>(null);
   const [currentCost, setCurrentCost] = useState<number | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fetch the current cost when the component mounts
-    const fetchCurrentCost = async () => {
+    const fetchCurrentCostAndId = async () => {
       try {
         const { data, error } = await supabase
           .from("game-settings")
-          .select("cost")
+          .select("cost, stamp_id")
           .eq("cost-type", "game")
           .single();
 
         if (error) {
-          console.error("Error fetching current cost:", error);
-          setMessage("Failed to fetch current cost.");
+          console.error("Error fetching current cost and stamp_id:", error);
+          setMessage("Failed to fetch current cost and stamp ID.");
           return;
         }
 
         setCurrentCost(data.cost);
+        setCurrentId(data.stamp_id);
       } catch (error) {
-        console.error("Error fetching current cost:", error);
+        console.error("Error fetching current cost and stamp_id:", error);
         setMessage("An unexpected error occurred.");
       }
     };
 
-    fetchCurrentCost();
+    fetchCurrentCostAndId();
   }, [supabase]);
 
   const handleSignOut = async () => {
@@ -75,6 +77,35 @@ export default function ClientSection({ email }: { email: string }) {
     }
   };
 
+  const handleUpdateId = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (id === "" || id <= 0 || id > 20) {
+      setMessage("Please enter a valid ID.");
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("game-settings")
+        .update({ stamp_id: id })
+        .eq("cost-type", "game");
+
+      if (error) {
+        console.error("Error updating cost:", error);
+        setMessage("Failed to update cost. Please try again.");
+        return;
+      }
+
+      setMessage("Stamp ID updated successfully!");
+      setCurrentId(id);
+      console.log("Updated Stamp ID:", data);
+    } catch (error) {
+      console.error("Error updating ID:", error);
+      setMessage("An unexpected error occurred.");
+    }
+  };
+
   return (
     <>
       <div
@@ -87,6 +118,8 @@ export default function ClientSection({ email }: { email: string }) {
           gap: "10px",
         }}>
         <p>Hello {email}</p>
+
+        <h1>The Super Secret Guaca Control Panel</h1>
 
         <p>
           Current Cost: {currentCost !== null ? currentCost : "Fetching cost.."}
@@ -102,6 +135,27 @@ export default function ClientSection({ email }: { email: string }) {
             type="number"
             value={cost}
             onChange={(e) => setCost(Number(e.target.value))}
+          />
+          <button type="submit">Update</button>
+        </form>
+
+        <p>
+          Current Stamp ID:{" "}
+          {currentId !== null ? currentId : "Fetching stamp_id.."}
+        </p>
+
+        <form
+          className="updateIdForm"
+          style={{ display: "flex", flexDirection: "row", gap: "10px" }}
+          onSubmit={handleUpdateId}>
+          <label htmlFor="id-input">Update Stamp_ID:</label>
+          <input
+            id="id-input"
+            type="number"
+            min={1}
+            max={20}
+            value={id}
+            onChange={(e) => setId(Number(e.target.value))}
           />
           <button type="submit">Update</button>
         </form>
