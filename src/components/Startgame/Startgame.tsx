@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
 import PaymentSection from "../PaymentSection";
-import { useGameContext } from "../GameContext";
 import { TicketPricesFetcher } from "../TicketPricesFetcher/TicketPricesFetcher"; // Ajusta la ruta
 
 

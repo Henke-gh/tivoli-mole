@@ -5,7 +5,7 @@
  * @param token - The JWT token string to decode
  * @returns The decoded payload as an object, or null if decoding fails
  */
-export function decodeJwt(token: string): object | null {
+export function decodeJwt(token: string): any {
   try {
     // Split the token into parts (header, payload, signature)
     const parts = token.split(".");

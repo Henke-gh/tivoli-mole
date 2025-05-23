@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     try {
       data = text ? JSON.parse(text) : {};
     } catch (e) {
-      console.error("Failed to parse JSON response:", text);
+      console.error("Failed to parse JSON response:", text + e);
       return NextResponse.json(
         { error: "Invalid JSON response from external API", rawResponse: text },
         { status: 502 }
