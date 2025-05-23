@@ -9,9 +9,6 @@ import React, {
 } from "react";
 
 import { getCost, getStampId } from "@/utils/helpers";
-import { createClient } from "@/utils/supabase/client";
-
-const supabase = createClient();
 
 interface GameContextProps {
   gameStarted: boolean;
