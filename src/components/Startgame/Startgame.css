@@ -169,7 +169,7 @@
 
  .ticket-prices-display h3 {
   font-size: 1.3rem;
-  color: #e73f3f;
+  color: var(  --dark-brown);
   margin-bottom: 1rem;
   text-align: center;
   font-weight: normal;
