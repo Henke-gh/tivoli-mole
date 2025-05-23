@@ -22,15 +22,22 @@ export const TicketPricesFetcher: React.FC = () => {
         .select("cost, stamp_id")
         .single();
 
-      if (error) throw error;
+        if (error) {
+            setError(error.message || "An unknown error occurred");
+            return;
+          }
 
       setData({
         basicPrice: data.cost,
         stampId: data.stamp_id,
         stampName: stampMap[data.stamp_id] || "Unknown",
       });
-    } catch (error: any) {
-      setError(error.message || "Error fetching ticket prices");
+    } catch (error) {
+        if (error instanceof Error) {
+            setError(error.message);
+          } else {
+            setError("An unexpected error occurred");
+          }
     } finally {
       setLoading(false);
     }
