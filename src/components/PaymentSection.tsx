@@ -27,7 +27,7 @@ const PaymentSection: React.FC = () => {
         handleStartGame();
         processReward(jwtToken, "stamp")
       } else {
-        setPaymentError(result.error || "Payment failed");
+        setPaymentError("Payment failed, do you have sufficient funds? Please try again.");
       }
     } catch (error) {
       console.error("Payment error:", error);
@@ -44,7 +44,7 @@ const PaymentSection: React.FC = () => {
       <button onClick={handlePayment} disabled={isProcessing} className="start-button">
         {isProcessing ? "Processing..." : `Play! Cost: ${GAME_CONFIG.COST}€`}
       </button>
-      {paymentError && <div>{paymentError}</div>}
+      {paymentError && <div className="error-container">{paymentError}</div>}
     </div>
   );
 };

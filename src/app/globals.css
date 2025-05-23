@@ -11,6 +11,8 @@ body,
   --light-brown: #bba587;
   --red: #e73f3f;
   --white: #ffffff;
+  --error-background: lightpink;
+  --error-foreground: #350101;
 }
 /* 1. Use a more-intuitive box-sizing model */
 *,
@@ -95,4 +97,13 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.error-container {
+  background-color: var(--error-background);
+  color: var(--error-foreground);
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 5px dashed var(--error-foreground);
+  border-radius: 1rem;
 }
