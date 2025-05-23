@@ -22,10 +22,10 @@ export const TicketPricesFetcher: React.FC = () => {
         .select("cost, stamp_id")
         .single();
 
-        if (error) {
-            setError(error.message || "An unknown error occurred");
-            return;
-          }
+      if (error) {
+        setError(error.message || "An unknown error occurred");
+        return;
+      }
 
       setData({
         basicPrice: data.cost,
@@ -33,11 +33,11 @@ export const TicketPricesFetcher: React.FC = () => {
         stampName: stampMap[data.stamp_id] || "Unknown",
       });
     } catch (error) {
-        if (error instanceof Error) {
-            setError(error.message);
-          } else {
-            setError("An unexpected error occurred");
-          }
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,10 @@ export const TicketPricesFetcher: React.FC = () => {
     return (
       <div className="ticket-prices-display error">
         <p className="error-message">{error}</p>
-        <button className="retry-button" onClick={fetchTicketPrices} type="button">
+        <button
+          className="retry-button"
+          onClick={fetchTicketPrices}
+          type="button">
           Retry
         </button>
       </div>
@@ -73,11 +76,11 @@ export const TicketPricesFetcher: React.FC = () => {
       <h3>Deal of the month</h3>
       <div className="price-list">
         <div className="price-item basic">
-          <span className="ticket-type">Total cost:</span>
+          <span className="ticket-type">Total cost: </span>
           <span className="price">${data.basicPrice}</span>
         </div>
         <div className="price-item premium">
-          <span className="ticket-type">Included in price:</span>
+          <span className="ticket-type">Included in price: </span>
           <span className="price">{data.stampName}</span>
         </div>
       </div>

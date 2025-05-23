@@ -77,7 +77,8 @@ export async function createTransaction(
 
 // Main function to process payment
 export async function processPayment(
-  jwtToken: string | null
+  jwtToken: string | null,
+  cost: number
 ): Promise<TransactionResult> {
   if (!jwtToken) {
     return {
@@ -90,7 +91,7 @@ export async function processPayment(
     const result = await createTransaction(
       {
         amusement_id: GAME_CONFIG.AMUSEMENT_ID,
-        stake_amount: GAME_CONFIG.COST,
+        stake_amount: cost,
       },
       jwtToken
     );
@@ -112,7 +113,8 @@ export async function processPayment(
 // Function to process rewards (cash or stamp)
 export async function processReward(
   jwtToken: string | null,
-  rewardType: "cash" | "stamp"
+  rewardType: "cash" | "stamp",
+  stampId?: number
 ): Promise<TransactionResult> {
   if (!jwtToken) {
     return {
@@ -133,7 +135,7 @@ export async function processReward(
       // For stamp rewards
       payload = {
         amusement_id: GAME_CONFIG.AMUSEMENT_ID,
-        stamp_id: GAME_CONFIG.STAMP_ID,
+        stamp_id: stampId,
       };
     }
 

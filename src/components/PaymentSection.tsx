@@ -1,6 +1,5 @@
 import React from "react";
 import { useGameContext } from "./GameContext";
-import { GAME_CONFIG } from "../config/gameConfig";
 import { processPayment } from "../services/transactionService";
 import { processReward } from "../services/transactionService";
 
@@ -12,7 +11,9 @@ const PaymentSection: React.FC = () => {
     paymentError,
     setPaymentError,
     jwtToken,
-    handleStartGame
+    handleStartGame,
+    cost,
+    stampId,
   } = useGameContext();
 
   const handlePayment = async () => {
@@ -20,12 +21,12 @@ const PaymentSection: React.FC = () => {
     setPaymentError(null);
 
     try {
-      const result = await processPayment(jwtToken);
+      const result = await processPayment(jwtToken, cost);
 
       if (result.success) {
         setHasPaid(true);
         handleStartGame();
-        processReward(jwtToken, "stamp")
+        processReward(jwtToken, "stamp", stampId);
       } else {
         setPaymentError("Payment failed, do you have sufficient funds? Please try again.");
       }
@@ -41,8 +42,11 @@ const PaymentSection: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handlePayment} disabled={isProcessing} className="start-button">
-        {isProcessing ? "Processing..." : `Play! Cost: ${GAME_CONFIG.COST}€`}
+      <button
+        onClick={handlePayment}
+        disabled={isProcessing}
+        className="start-button">
+        {isProcessing ? "Processing..." : `Play Game`}
       </button>
       {paymentError && <div className="error-container">{paymentError}</div>}
     </div>
