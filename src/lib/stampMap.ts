@@ -1,3 +1,4 @@
+
 const stampMap: { [key: number]: string } = {
     1: "panda",
     2: "orca",
