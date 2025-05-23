@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
-import AttractionStampSelector from "../StampGame/StampGame";
+import { TicketPricesFetcher } from "../TicketPricesFetcher/TicketPricesFetcher"; // Ajusta la ruta
 
 interface StartgameProps {
   onStartGame: () => void;
@@ -14,16 +14,10 @@ const Startgame: React.FC<StartgameProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleAttractionStampSelect = (option: "basic" | "premium") => {
-    console.log("Stamp option selected:", option);
-  };
-
   useEffect(() => {
-    // Efecto para animación de entrada
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -67,12 +61,8 @@ const Startgame: React.FC<StartgameProps> = ({
           <h2>Buy Ticket</h2>
 
           <div className="ticket-selection-container">
-            <div className="ticket-selector">
-              <AttractionStampSelector
-                baseCost={2}
-                metalCost={4}
-                onSelect={handleAttractionStampSelect}
-              />
+            <div className="ticket-display">
+              <TicketPricesFetcher />
             </div>
             <button className="start-button" onClick={handleStartGame}>
               To Game
