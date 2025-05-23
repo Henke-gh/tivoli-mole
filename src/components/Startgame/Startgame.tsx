@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
-import AttractionStampSelector from "../StampGame/StampGame";
+import PaymentSection from "../PaymentSection";
+import { TicketPricesFetcher } from "../TicketPricesFetcher/TicketPricesFetcher"; // Ajusta la ruta
+
 
 interface StartgameProps {
-  onStartGame: () => void;
   gameTitle?: string;
 }
 
 const Startgame: React.FC<StartgameProps> = ({
-  onStartGame,
   gameTitle = "Welcome to Guac-a-Mole",
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleAttractionStampSelect = (option: "basic" | "premium") => {
-    console.log("Stamp option selected:", option);
-  };
-
-  useEffect(() => {
-    // Efecto para animación de entrada
+useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-
     return () => clearTimeout(timer);
-  }, []);
-
-  const handleStartGame = () => {
-    setIsVisible(false);
-    setTimeout(onStartGame, 500);
-  };
+  }, []); 
 
   return (
     <section className={`startgame ${isVisible ? "visible" : ""}`}>
@@ -67,16 +56,10 @@ const Startgame: React.FC<StartgameProps> = ({
           <h2>Buy Ticket</h2>
 
           <div className="ticket-selection-container">
-            <div className="ticket-selector">
-              <AttractionStampSelector
-                baseCost={2}
-                metalCost={4}
-                onSelect={handleAttractionStampSelect}
-              />
+            <div className="ticket-display">
+              <TicketPricesFetcher />
             </div>
-            <button className="start-button" onClick={handleStartGame}>
-              To Game
-            </button>
+            <PaymentSection />
           </div>
         </article>
       </div>
