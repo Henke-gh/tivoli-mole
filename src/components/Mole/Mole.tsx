@@ -9,16 +9,20 @@ export interface MoleProps {
 }
 
 const Mole: React.FC<MoleProps> = ({ isActive, onWhack, whacked }) => {
+  const shouldShowMole = isActive || whacked;
+
   return (
     <div className="mole-container">
-      {isActive && (
-        <div className={`mole ${whacked ? "whacked" : ""}`}
-            onClick={onWhack}
-            role="button"
-            tabIndex={0}>
+      {shouldShowMole && (
+        <div
+          className={`mole ${whacked ? "whacked" : ""}`}
+          onClick={onWhack}
+          role="button"
+          tabIndex={0}
+        >
           <Image
             className="moleImg"
-            src={"./darkerMole.svg"}
+            src={"/darkerMole.svg"}
             alt="A hungry mole."
             width={50}
             height={50}
@@ -29,7 +33,7 @@ const Mole: React.FC<MoleProps> = ({ isActive, onWhack, whacked }) => {
       <div className="mole-hole-lower">
         <Image
           className="bowl"
-          src={"./boardBowl.svg"}
+          src={"/boardBowl.svg"}
           alt="A bowl of guacamole"
           width={50}
           height={50}
@@ -39,4 +43,4 @@ const Mole: React.FC<MoleProps> = ({ isActive, onWhack, whacked }) => {
   );
 };
 
-export default Mole;
+export default Mole; 

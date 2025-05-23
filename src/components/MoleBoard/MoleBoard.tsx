@@ -39,42 +39,65 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }
   }, [gameStarted, gameEnd]);
 
-  //timer logic
-  useEffect(() => {
-    if (gameStarted && timeLeft > 0) {
-      const timer = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000); // Decrease time every second
+// Timer logic
+useEffect(() => {
+  if (gameStarted && timeLeft > 0) {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  } else if (gameStarted && timeLeft === 0) {
+    setGameEnd(true);
+  }
+}, [gameStarted, timeLeft]);
 
-      return () => clearInterval(timer);
-    } else if (gameStarted && timeLeft === 0) {
-      setGameEnd(true);
-      if (onGameover) {
-        updateScore?.(playerScore);
-        onGameover();
-      }
-    }
-  }, [gameStarted, timeLeft, onGameover]);
+useEffect(() => {
+  if (!gameEnd) {
+    updateScore?.(playerScore);
+  }
+}, [playerScore]);
+
+useEffect(() => {
+  if (gameEnd) {
+    // Delay just a tick to get out of render phase
+    const timeout = setTimeout(() => {
+      updateScore?.(playerScore);
+      onGameover?.();
+    }, 0);
+    return () => clearTimeout(timeout);
+  }
+}, [gameEnd, playerScore, updateScore, onGameover]);
 
   const handleWhack = (id: number) => {
-    if (!gameEnd) {
-      setMoles((prev) =>
-        prev.map((mole) =>
-          mole.id === id ? { ...mole, active: false, whacked: true } : mole
-        )
-      );
-      setPlayerScore((prev) => prev + 1);
-      updateScore?.(playerScore);
+  if (gameEnd) return;
 
-      setTimeout(() => {
-        setMoles((prev) =>
-          prev.map((mole) =>
-            mole.id === id ? { ...mole, whacked: false } : mole
-          )
-        );
-      }, 300);
-    }
-  };
+  const targetMole = moles.find((m) => m.id === id);
+  if (!targetMole || !targetMole.active || targetMole.whacked) return;
+
+  setMoles((prev) =>
+    prev.map((mole) =>
+      mole.id === id ? { ...mole, whacked: true } : mole
+    )
+  );
+
+  setPlayerScore((prev) => prev + 1);
+
+  setTimeout(() => {
+    setMoles((prev) =>
+      prev.map((mole) =>
+        mole.id === id ? { ...mole, active: false } : mole
+      )
+    );
+  }, 200);
+
+  setTimeout(() => {
+    setMoles((prev) =>
+      prev.map((mole) =>
+        mole.id === id ? { ...mole, whacked: false } : mole
+      )
+    );
+  }, 600);
+};
 
   const hideModalAndStartGame = () => {
     setGameEnd(false);
