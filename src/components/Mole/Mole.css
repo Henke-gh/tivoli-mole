@@ -30,7 +30,17 @@
   z-index: 1;
   top: 30%;
   left: 55%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 100%);
+  animation: moleAnimation 0.75s ease-in-out forwards;
+}
+
+@keyframes moleAnimation {
+  from {
+    transform: translate(-50%, 100%);
+  }
+  to {
+    transform: translate(-50%, -60%);
+  }
 }
 
 .moleImg {
@@ -51,7 +61,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  animation: guacDrop 0.4s ease forwards;
+  animation: guacDrop 0.85s ease forwards;
   pointer-events: none;
   z-index: 10;
 }
@@ -83,6 +93,15 @@
   height: 50%;
   top: 40%;
   left: 60%;
+}
+
+@keyframes moleAnimation {
+  from {
+    transform: translate(-50%, 100%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
 }
 
 .moleImg {
