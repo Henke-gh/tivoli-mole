@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
-
-import AttractionStampSelector from "../StampGame/StampGame";
 import PaymentSection from "../PaymentSection";
 import { useGameContext } from "../GameContext";
 import { TicketPricesFetcher } from "../TicketPricesFetcher/TicketPricesFetcher"; // Ajusta la ruta
@@ -17,19 +15,12 @@ const Startgame: React.FC<StartgameProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleAttractionStampSelect = (option: "basic" | "premium") => {
-    console.log("Stamp option selected:", option);
-  };
-
 useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []); 
-
-   const { hasPaid } = useGameContext();
-
 
   return (
     <section className={`startgame ${isVisible ? "visible" : ""}`}>

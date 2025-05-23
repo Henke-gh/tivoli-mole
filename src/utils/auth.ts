@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export interface DecodedToken {
   id: string;
-  [key: string]: any;
+  [key: string]: string | number;
 }
 
 export interface AuthResponse {
@@ -27,6 +27,7 @@ export function verifyToken(token: string, secretKey: string): AuthResponse {
       authenticated: true,
     };
   } catch (error) {
+    console.log(error);
     return {
       error: "Invalid token",
       authenticated: false,
@@ -39,7 +40,7 @@ export function verifyToken(token: string, secretKey: string): AuthResponse {
  * @param token JWT token string
  * @returns Decoded payload or null if decoding fails
  */
-export function decodeJwt(token: string): any {
+export function decodeJwt(token: string): object | null {
   try {
     const parts = token.split(".");
     if (parts.length !== 3) {

@@ -53,7 +53,7 @@ export async function createTransaction(
       console.log(data); //TODO Try to remove without breaking application
     } catch (e) {
       console.error("Failed to parse response:", responseText);
-      throw new Error(`Invalid response format: ${responseText}`);
+      throw new Error(`Invalid response format: ${responseText}` + e);
     }
 
     if (!response.ok) {
