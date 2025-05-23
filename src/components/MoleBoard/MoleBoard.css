@@ -1,3 +1,10 @@
+.moleboard *,
+.moleboard-container * {
+  user-select: none;   
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .moleboard-container {
   margin: 1rem;
   flex-grow: 1;
@@ -11,7 +18,8 @@
 
 .headerText {
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem;
+  font-family: var(--robotoSlab);
 }
 
 .game-p {
@@ -51,5 +59,33 @@
   border: 5px dashed var(--red);
   border-radius: 1rem;
   padding: 1rem;
-  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 768px), only screen and (orientation: landscape) {
+  .moleboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 800px;
+}
+
+.moleboard-container {
+  flex-direction: row;
+}
+
+.withBorder {
+  display: flex;
+  text-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  word-wrap: normal;
+  max-width: 12rem;
+  height: fit-content;
+  padding: 2rem;
+}
+
+.top, .bottom {
+  border-radius: 1rem;
+}
+
 }

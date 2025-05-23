@@ -18,6 +18,7 @@ function Gameover({ score, onRestart }: GameoverProps) {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submissionMsg, setSubmissionMsg] = useState<string | null>(null);
   const [highScoreTrigger, setHighScoreTrigger] = useState<number>(0);
+  const [submitted, setSubmitted] = useState<boolean>(false); //Only one submission allowed
 
   useEffect(() => {
     const fetchHighScores = async () => {
@@ -34,7 +35,10 @@ function Gameover({ score, onRestart }: GameoverProps) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
+   // if you already submitted, do nothing
+    if (submitted) {
+      return;
+    }
     if (!score || playerName.trim() === "") {
       setSubmissionMsg("Please enter your initials.");
       return;
@@ -47,6 +51,7 @@ function Gameover({ score, onRestart }: GameoverProps) {
 
       if (savedScore) {
         setSubmissionMsg("Score submitted successfully!");
+        setSubmitted(true); // Mark as submitted successfully
 
         //update high score table, re-render
         setHighScoreTrigger((prev) => prev + 1);
@@ -85,6 +90,7 @@ function Gameover({ score, onRestart }: GameoverProps) {
             <p className="game-over-text">You guaced {score} moles.</p>
             <form onSubmit={handleSubmit}>
               <label htmlFor="name">Enter your initials:</label>
+              <div className="input-button-row">
               <input
                 type="text"
                 id="name"
@@ -93,16 +99,22 @@ function Gameover({ score, onRestart }: GameoverProps) {
                 maxLength={3}
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value.toUpperCase())}
-                disabled={isSubmitting}
+                disabled={isSubmitting || submitted} // Disable input if submitting or already submitted
               />
               <button type="submit" disabled={isSubmitting}>
                 Submit
               </button>
+              </div>
             </form>
             {submissionMsg && (
               <p className="submission-message">{submissionMsg}</p>
             )}
+
+          <div className="stars-over">
+                <img src="./star.svg" alt="Star 1" className="star star-right" />
+                <img src="./star.svg" alt="Star 2" className="star star-bottom-left" />
           </div>
+        </div>     
         )}
       </section>
 
@@ -116,6 +128,13 @@ function Gameover({ score, onRestart }: GameoverProps) {
           Back to Start
         </button>
       </section>
+      <article>
+        <div className="gameover-images">
+          <img src="./flagTrio-Left.svg" alt="" className="flagTrio-Left" />
+          <img src="./Mole-Guacamole.svg" alt="" className= "Mole-Guacamole"/>
+          <img src="flagTrio-new.svg" alt="" className="flagTrio-right" />
+        </div>
+      </article>
     </div>
   );
 }

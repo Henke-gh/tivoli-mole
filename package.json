@@ -10,7 +10,7 @@
      "dev:3001": "next dev -p 3001"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
+    "@supabase/supabase-js": "^2.49.8",
     "dotenv": "^16.5.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
