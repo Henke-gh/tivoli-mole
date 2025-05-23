@@ -39,7 +39,7 @@ const WhackAMoleGame: React.FC<WhackAMoleGameProps> = ({
     }
   }, [gameStarted, gameEnd]);
 
-// Timer logic
+// Timer logic here
 useEffect(() => {
   if (gameStarted && timeLeft > 0) {
     const timer = setInterval(() => {
