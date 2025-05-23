@@ -106,24 +106,26 @@ useEffect(() => {
   };
 
   return (
-    <div className="moleboard-container">
-      {!gameStarted && <StartGameModal onStartGame={hideModalAndStartGame} />}
+    <>
       <h1 className="headerText">Happy guacing!</h1>
-      <p className="game-p withBorder top">Time Left: {timeLeft} seconds</p>
-      {!gameEnd && (
-        <div className="moleboard">
-          {moles.map((mole) => (
-            <Mole
-              key={mole.id}
-              isActive={mole.active}
-              onWhack={() => handleWhack(mole.id)}
-              whacked={mole.whacked}
-            />
-          ))}
-        </div>
-      )}
-      <p className="game-p withBorder bottom">Score: {playerScore}</p>
-    </div>
+      <div className="moleboard-container">
+        {!gameStarted && <StartGameModal onStartGame={hideModalAndStartGame} />}
+        <p className="game-p withBorder top">Time Left:<wbr /> {timeLeft} seconds</p>
+        {!gameEnd && (
+          <div className="moleboard">
+            {moles.map((mole) => (
+              <Mole
+                key={mole.id}
+                isActive={mole.active}
+                onWhack={() => handleWhack(mole.id)}
+                whacked={mole.whacked}
+              />
+            ))}
+          </div>
+        )}
+        <p className="game-p withBorder bottom">Score:<wbr /> {playerScore}</p>
+      </div>
+    </>
   );
 };
 

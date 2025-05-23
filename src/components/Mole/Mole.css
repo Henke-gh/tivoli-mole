@@ -70,3 +70,28 @@
     opacity: 0;
   }
 }
+
+@media only screen and (min-width: 768px), only screen and (orientation: landscape) {
+
+.mole-hole-lower {
+  width: 100%;
+
+}
+
+.mole {
+  position: absolute;
+  height: 50%;
+  top: 40%;
+  left: 60%;
+}
+
+.moleImg {
+  height: 100%;
+}
+
+.bowl {
+  width: 100%;
+  height: fit-content;
+}
+
+}
