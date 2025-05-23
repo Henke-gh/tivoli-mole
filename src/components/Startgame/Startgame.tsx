@@ -1,30 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
+
+import AttractionStampSelector from "../StampGame/StampGame";
+import PaymentSection from "../PaymentSection";
+import { useGameContext } from "../GameContext";
 import { TicketPricesFetcher } from "../TicketPricesFetcher/TicketPricesFetcher"; // Ajusta la ruta
 
+
 interface StartgameProps {
-  onStartGame: () => void;
   gameTitle?: string;
 }
 
 const Startgame: React.FC<StartgameProps> = ({
-  onStartGame,
   gameTitle = "Welcome to Guac-a-Mole",
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
+  const handleAttractionStampSelect = (option: "basic" | "premium") => {
+    console.log("Stamp option selected:", option);
+  };
+
+useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
-  }, []);
+  }, []); 
 
-  const handleStartGame = () => {
-    setIsVisible(false);
-    setTimeout(onStartGame, 500);
-  };
+   const { hasPaid } = useGameContext();
+
 
   return (
     <section className={`startgame ${isVisible ? "visible" : ""}`}>
@@ -64,9 +69,7 @@ const Startgame: React.FC<StartgameProps> = ({
             <div className="ticket-display">
               <TicketPricesFetcher />
             </div>
-            <button className="start-button" onClick={handleStartGame}>
-              To Game
-            </button>
+            <PaymentSection />
           </div>
         </article>
       </div>

@@ -10,6 +10,9 @@ interface GameoverProps {
 }
 
 function Gameover({ score, onRestart }: GameoverProps) {
+
+  // Payout stamp logic goes here.
+
   const [highScore, setHighScore] = useState<number[]>([]);
   const [playerName, setPlayerName] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
