@@ -1,5 +1,3 @@
-"use client";
-
 import { GameProvider } from '../components/GameContext';
 import GameWrapper from '../components/GameWrapper'
 import styles from './page.module.css';
