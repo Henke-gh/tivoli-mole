@@ -34,6 +34,7 @@ export default function JwtDisplay() {
           const decoded = decodeJwt(token);
           if (decoded) {
             setDecodedToken(decoded);
+            console.log("Decoded JWT token:", decodedToken);
             setError(null);
           } else {
             setError("Failed to decode token");
