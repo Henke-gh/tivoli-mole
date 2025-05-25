@@ -3,7 +3,8 @@ import "./Startgame.css";
 import { HighScoreTable } from "../HighScoreTable/HighScoreTable";
 import PaymentSection from "../PaymentSection";
 import { TicketPricesFetcher } from "../TicketPricesFetcher/TicketPricesFetcher"; // Ajusta la ruta
-
+import { useGameContext } from "../GameContext";
+import stampMap from "@/lib/stampMap";
 
 interface StartgameProps {
   gameTitle?: string;
@@ -13,13 +14,16 @@ const Startgame: React.FC<StartgameProps> = ({
   gameTitle = "Welcome to Guac-a-Mole",
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const { stampId } = useGameContext();
 
-useEffect(() => {
+  const stampType = stampMap[stampId] || "Unknown Stamp";
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
-  }, []); 
+  }, []);
 
   return (
     <section className={`startgame ${isVisible ? "visible" : ""}`}>
@@ -36,10 +40,7 @@ useEffect(() => {
           <div className="startgame-body">
             <div className="awards">
               <h2>Awards:</h2>
-              <ul>
-                <li>Animal: Tucan</li>
-                <li>Metal: Gold</li>
-              </ul>
+              <p>{stampType}</p>
             </div>
             <div className="mole-graphic">
               <img src="./Mole-new.svg" alt="Mole" />
