@@ -5,7 +5,7 @@ import Startgame from "../components/Startgame/Startgame";
 import Gameover from "../components/Gameover/Gameover";
 import MoleBoard from "../components/MoleBoard/MoleBoard";
 import styles from "../app/page.module.css";
-/* import JwtDisplay from './JwtDisplay'; */
+import JwtDisplay from "./JwtDisplay";
 
 const GameContent: React.FC = () => {
   const {
@@ -19,7 +19,7 @@ const GameContent: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      {/*    <JwtDisplay /> */}
+      <JwtDisplay />
       {!gameStarted ? (
         <Startgame />
       ) : gameOver ? (
