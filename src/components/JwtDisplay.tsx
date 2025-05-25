@@ -16,7 +16,7 @@ export default function JwtDisplay() {
         const allowedOrigins = [
           "http://localhost:3001",
           "http://127.0.0.1:3000",
-          "https://tivoli.yrgobanken.vip"
+          "https://tivoli.yrgobanken.vip",
         ];
 
         if (!allowedOrigins.includes(event.origin)) {
@@ -30,39 +30,40 @@ export default function JwtDisplay() {
           const { token } = event.data;
 
           setJwtToken(token);
-          
+
           const decoded = decodeJwt(token);
           if (decoded) {
-              setDecodedToken(decoded);
-              setError(null);
-            } else {
-                setError("Failed to decode token");
-            }
-            
-            console.log("Received JWT token from parent application");
+            setDecodedToken(decoded);
+            console.log("Decoded JWT token:", decodedToken);
+            setError(null);
+          } else {
+            setError("Failed to decode token");
+          }
+
+          console.log("Received JWT token from parent application");
         }
-    } catch (err) {
+      } catch (err) {
         console.error("Error processing message:", err);
         setError("Error processing message from parent application");
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: "GAME_READY" }, "*");
+      console.log("Game ready message sent to parent");
     }
-};
 
-window.addEventListener("message", handleMessage);
-
-if (window.parent !== window) {
-    window.parent.postMessage({ type: "GAME_READY" }, "*");
-    console.log("Game ready message sent to parent");
-}
-
-return () => {
-    window.removeEventListener("message", handleMessage);
-};
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
   }, [setJwtToken]);
 
   if (!jwtToken) {
     return (
       <div>
-        <p>
+        <p style={{ fontFamily: "var(--robotoSlab)" }}>
           Waiting for JWT token from parent application...
         </p>
       </div>
@@ -72,43 +73,14 @@ return () => {
   if (error) {
     return (
       <div>
-        <p>Error: {error}</p>
+        <p style={{ fontFamily: "var(--robotoSlab)" }}>Error: {error}</p>
       </div>
     );
   }
 
   return (
     <div>
-      <h2>JWT Token Information</h2>
-
-      <div>
-        <h3>Raw Token:</h3>
-        <div>
-          <p>{jwtToken}</p>
-        </div>
-      </div>
-
-      {decodedToken && (
-        <div>
-          <h3>
-            Decoded Content:
-          </h3>
-          <div>
-            <pre>
-              {JSON.stringify(decodedToken, null, 2)}
-            </pre>
-          </div>
-
-          {decodedToken.exp && (
-            <div>
-              <p>
-                <span>Expires:</span>{" "}
-                {new Date(decodedToken.exp * 1000).toLocaleString()}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+      <p style={{ fontFamily: "var(--robotoSlab)" }}>JWT token set.</p>
     </div>
   );
 }
