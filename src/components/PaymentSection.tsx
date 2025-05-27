@@ -43,7 +43,7 @@ const PaymentSection: React.FC = () => {
   return (
     <div>
       <button
-        onClick={handlePayment}
+        onClick={ handlePayment }
         disabled={isProcessing}
         className="start-button">
         {isProcessing ? "Processing..." : `Play Game`}

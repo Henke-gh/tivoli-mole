@@ -19,7 +19,7 @@ const GameContent: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      <JwtDisplay />
+     { <JwtDisplay /> } 
       {!gameStarted ? (
         <Startgame />
       ) : gameOver ? (
