@@ -62,25 +62,25 @@ export default function JwtDisplay() {
 
   if (!jwtToken) {
     return (
-      <div>
-        <p style={{ fontFamily: "var(--robotoSlab)" }}>
+      <section className="jwt">
+        <p className="pending-container" style={{ fontFamily: "var(--robotoSlab)" }}>
           Waiting for JWT token from parent application...
         </p>
-      </div>
+      </section>
     );
   }
 
   if (error) {
     return (
-      <div>
-        <p style={{ fontFamily: "var(--robotoSlab)" }}>Error: {error}</p>
-      </div>
+      <section className="jwt">
+        <p className="error-container" style={{ fontFamily: "var(--robotoSlab)" }}>Error: {error}</p>
+      </section>
     );
   }
 
   return (
-    <div>
-      <p style={{ fontFamily: "var(--robotoSlab)" }}>JWT token set.</p>
-    </div>
+    <section className="jwt">
+      <p className="success-container" style={{ fontFamily: "var(--robotoSlab)" }}>JWT token set.</p>
+    </section>
   );
 }
