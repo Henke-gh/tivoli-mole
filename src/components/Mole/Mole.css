@@ -9,13 +9,13 @@
 }
 
 .mole-hole-lower {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
   height: 50%;
   position: absolute;
-  top: 55%;
-}
-
-.mole-hole-lower {
   z-index: 2;
+  bottom: 0px;
 }
 
 .bowl {
@@ -30,7 +30,6 @@
   z-index: 1;
   top: 30%;
   left: 55%;
-  transform: translate(-50%, 100%);
   animation: moleAnimation 0.75s ease-in-out forwards;
 }
 
@@ -39,7 +38,7 @@
     transform: translate(-50%, 100%);
   }
   to {
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
   }
 }
 
