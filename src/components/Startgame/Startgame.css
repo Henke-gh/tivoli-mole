@@ -184,7 +184,7 @@
 .start-button {
   padding: 1rem 3rem;
   font-size: 1.5rem;
-  background-color: #8dcb52;
+  background-color: var(--medium-green);
   color: #000;
   border: none;
   border-radius: 50px;
@@ -193,7 +193,7 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 0 #abf465;
   margin-top: 1.5rem;
-  border: 4px dashed #568925; /* heavier border with discontiued lines and not angles */
+  border: 4px dashed var(--border-green); /* heavier border with discontiued lines and not angles */
   border-radius: 12px;
 }
 

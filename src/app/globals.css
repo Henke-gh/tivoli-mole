@@ -4,6 +4,7 @@ body,
   --light-green: #abf465;
   --medium-green: #8dcb52;
   --dark-green: #468b05;
+  --border-green: #568925;
   --light-yellow: #fcffd9;
   --dark-yellow: #edeba6;
   --brown: #57452c;
@@ -13,6 +14,11 @@ body,
   --white: #ffffff;
   --error-background: lightpink;
   --error-foreground: #350101;
+  --pending-background:#f6a075;
+  --pending-foreground:#520f00;
+
+
+
 }
 /* 1. Use a more-intuitive box-sizing model */
 *,
@@ -99,11 +105,34 @@ body,
   padding: 0;
 }
 
+.jwt {
+  display: flex;
+  justify-content: center;
+}
+
+.error-container, .pending-container, .success-container {
+  align-self: center;
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 1rem 0rem 1rem;
+}
+
 .error-container {
   background-color: var(--error-background);
   color: var(--error-foreground);
-  margin-top: 1rem;
-  padding: 2rem;
   border: 5px dashed var(--error-foreground);
-  border-radius: 1rem;
+}
+
+.pending-container {
+  background-color: var(--pending-background);
+  color: var(--pending-foreground);
+  border: 5px dashed var(--pending-foreground);
+}
+
+.success-container {
+  background-color: var(--medium-green);
+  color: var(--dark-brown);
+  border: 5px dashed var(--border-green);
 }
