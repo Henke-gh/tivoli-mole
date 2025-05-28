@@ -43,12 +43,12 @@ const PaymentSection: React.FC = () => {
   return (
     <div>
       <button
-        onClick={handlePayment}
+        onClick={ handlePayment }
         disabled={isProcessing}
         className="start-button">
         {isProcessing ? "Processing..." : `Play Game`}
       </button>
-      {paymentError && <div className="error-container">{paymentError}</div>}
+      {paymentError && <section className="jwt"><div className="error-container">{paymentError}</div></section>}
     </div>
   );
 };
